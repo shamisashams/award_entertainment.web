@@ -59,7 +59,7 @@
     </div>
 @endif
 
-<a id="bottom_logo">
+<a href="https://awardholding.com/ge" target="_blank" id="bottom_logo">
     <img src="/img/logo/7.png" alt=""/>
 </a>
 {{--<button id="footer_btn">--}}
