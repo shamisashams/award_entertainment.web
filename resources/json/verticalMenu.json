@@ -1,0 +1,61 @@
+{
+    "menu": [
+        {
+            "url": "slider.index",
+            "name": "slider",
+            "i18n": "slider",
+            "icon": "slideshow",
+            "slug": "slider"
+        },
+        {
+            "url": "setting.index",
+            "name": "setting",
+            "i18n": "setting",
+            "icon": "brightness_low",
+            "slug": "setting"
+        },
+        {
+            "url": "language.index",
+            "name": "language",
+            "i18n": "language",
+            "icon": "language",
+            "slug": "language"
+        },
+        {
+            "url": "translation.index",
+            "name": "translation",
+            "i18n": "translation",
+            "icon": "g_translate",
+            "slug": "translation"
+        },
+        {
+            "url": "blog.index",
+            "name": "blog",
+            "i18n": "blog",
+            "icon": "apps",
+            "slug": "blog"
+        },
+        {
+            "url": "gallery.index",
+            "name": "gallery",
+            "i18n": "gallery",
+            "icon": "assistant",
+            "slug": "gallery"
+        },
+        {
+            "url": "page.index",
+            "name": "page",
+            "i18n": "page",
+            "icon": "announcement",
+            "slug": "page"
+        },
+        {
+            "url": "company.index",
+            "name": "company",
+            "i18n": "company",
+            "icon": "view_module",
+            "slug": "company"
+        }
+
+    ]
+}
