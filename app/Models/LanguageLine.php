@@ -85,4 +85,10 @@ class LanguageLine extends \Spatie\TranslationLoader\LanguageLine
         return $query->where('key', 'like', '%' . $key . '%');
     }
 
+
+    protected function asJson($value)
+    {
+        return json_encode($value, JSON_UNESCAPED_UNICODE);
+    }
+
 }

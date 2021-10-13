@@ -463,16 +463,18 @@ img {
 }
 .left_side {
     padding: 34px;
+    
 }
 .section.one .numbers {
     position: absolute;
     bottom: 30px;
     left: 134px;
     justify-content: space-between;
+    width: calc( 45% - 134px);
+    overflow: hidden;
 }
 .section.one .numbers .flex {
     align-items: center;
-    margin-right: 40px;
 }
 .section.one .numbers .large {
     font-size: 91px;
@@ -1667,6 +1669,7 @@ img {
     }
     .section.one .numbers {
         left: 77px;
+        width: calc( 45% - 77px);
     }
     .section.two .right_side .circle {
         left: -37px;
@@ -1936,6 +1939,7 @@ img {
     .section.one .numbers {
         bottom: 60px;
         z-index: 100;
+        width: auto;
     }
     .other_sections {
         padding-top: 0 !important;
@@ -2962,5 +2966,42 @@ copy-link-img {
     }
     .header .navbar.show {
         transform: translateX(0);
+    }
+}
+@media screen and (max-width: 2000px) {
+    .section.one .numbers .large {
+        font-size: 70px;
+        margin-right: 6px;
+    }
+}
+@media screen and (max-width: 1700px) {
+    .section.one .numbers .t {
+        font-size: 16px;
+    }
+    .section.one .numbers .large {
+        font-size: 56px;
+    }
+}
+@media screen and (max-width: 1500px)  {
+    .section.one .numbers .large {
+        font-size: 40px;
+    }
+}
+@media screen and (max-width: 1200px)  {
+    .section.one .numbers .flex {
+       flex-direction: column;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .section.one .numbers .flex {
+        flex-direction: row;
+     }
+     .section.one .numbers .large {
+        font-size: 36px;
+        margin-right: 3px;
+    }
+    .section.one .numbers .t {
+        font-size: 11px;
+        line-height: 12px;
     }
 }
