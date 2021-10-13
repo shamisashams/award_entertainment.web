@@ -13,19 +13,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Gallery extends Model
 {
     use HasFactory, ScopeGalleryFilter, SoftDeletes;
-    protected $fillable =[
+
+    protected $fillable = [
         "status",
         "video_link"
     ];
+
     public function languages(): HasMany
     {
         return $this->hasMany(GalleryLanguage::class);
     }
+
     public function availableLanguage()
     {
         return $this->languages()->where('language_id', '=', app()->getLocale());
     }
-    public function gallerySliders(){
+
+    public function gallerySliders()
+    {
         return $this->hasMany(GallerySlider::class);
     }
 
@@ -80,6 +85,7 @@ class Gallery extends Model
     {
         return $this->gallerySliders()->where('slider_id', $sliderId)->first();
     }
+
     public function language(string $locale = null)
     {
         if (null === $locale) {
@@ -87,13 +93,24 @@ class Gallery extends Model
         }
         return $this->languages()->where('language_id', $locale)->first();
     }
+
     public function files(): MorphMany
     {
-        return $this->morphMany(File::class, 'fileable');
+        return $this->morphMany(File::class, 'fileable')->where(['type' => File::FILE_DEFAULT]);
     }
 
     public function file(): MorphOne
     {
-        return $this->morphOne(File::class, 'fileable');
+        return $this->morphOne(File::class, 'fileable')->where(['type' => File::FILE_DEFAULT]);
     }
+
+    public function mainFile(): MorphOne
+    {
+        return $this->morphOne(File::class, 'fileable')->where(['type' => File::FILE_MAIN]);
+    }
+
+//    public function allFiles()
+//    {
+//        return $this->morphMany(File::class, 'fileable');
+//    }
 }

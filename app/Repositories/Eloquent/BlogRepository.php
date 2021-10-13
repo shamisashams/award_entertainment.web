@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use App\Http\Request\Admin\BlogRequest;
 use App\Http\Request\Admin\ProductRequest;
 use App\Models\Blog;
+use App\Models\File;
 use App\Models\ProductAnswers;
 use App\Models\ProductLanguage;
 use App\Repositories\BlogRepositoryInterface;
@@ -103,6 +104,53 @@ class BlogRepository extends BaseRepository implements BlogRepositoryInterface
             DB::connection()->rollBack();
         }
     }
+
+    public function saveFile(int $id, \App\Http\Requests\Admin\BlogRequest $request): Blog
+    {
+        $this->model = $this->findOrFail($id);
+
+        // Delete old files if exist
+        if (count($this->model->files)) {
+            foreach ($this->model->files as $file) {
+                if (!$request->old_images) {
+                    $file->delete();
+                    continue;
+                }
+                if (!in_array((string)$file->id, $request->old_images, true)) {
+                    $file->delete();
+                }
+            }
+        }
+
+
+        if ($request->hasFile('images')) {
+            if ($request->isMethod('PUT')) {
+                $blog = Blog::findOrFail($this->model->id);
+                if (count($blog->files)) {
+                    $error = \Illuminate\Validation\ValidationException::withMessages([
+                        'image' => [__('client.file_max_count')],
+                    ]);
+                    throw $error;
+                }
+            }
+
+            // Get Name Of model
+            $image = $request->file('images')[0];
+            $imagename = date('Ymhs') . str_replace(' ', '', $image->getClientOriginalName());
+            $destination = base_path() . '/storage/app/public/' . 'Blog' . '/' . $this->model->id;
+            $image->move($destination, $imagename);
+            $this->model->files()->create([
+                'title' => $imagename,
+                'path' => 'storage/' . 'Blog' . '/' . $this->model->id,
+                'format' => $image->getClientOriginalExtension(),
+                'type' => File::FILE_DEFAULT
+            ]);
+        }
+
+
+        return $this->model;
+    }
+
 
 
 }

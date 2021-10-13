@@ -34,9 +34,7 @@ class GalleryRequest extends FormRequest
             $data ['title.' . $defaultLanguage->id] = 'required|string|max:255';
             $data ['description.' . $defaultLanguage->id] = 'nullable|string|max:255';
             $data ['short_description.' . $defaultLanguage->id] = 'nullable|string|max:255';
-            $data ['content.' . $defaultLanguage->id] = 'required|string|max:1024';
-            $data ['content_2.' . $defaultLanguage->id] = 'nullable|string|max:1024';
-            $data ['content_3.' . $defaultLanguage->id] = 'nullable|string|max:1024';
+            $data ['content.' . $defaultLanguage->id] = 'required|string';
             $data ['slug.' . $defaultLanguage->id] = 'required|string|max:255';
 
         }

@@ -30,8 +30,8 @@ class PageRequest extends FormRequest
         ];
         if ($this->method() !== 'GET') {
             $data ['title.' . $defaultLanguage->id] = 'nullable|string|max:255';
-            $data ['content_1.' . $defaultLanguage->id] = 'nullable|string|max:1024';
-            $data ['content_2.' . $defaultLanguage->id] = 'nullable|string|max:1024';
+            $data ['content_1.' . $defaultLanguage->id] = 'nullable|string';
+            $data ['content_2.' . $defaultLanguage->id] = 'nullable|string';
 
         }
         return $data;

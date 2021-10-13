@@ -74,7 +74,7 @@
                                     @enderror
                                 </div>
                                 <div class="input-field ">
-                                    {!! Form::textarea('content['.$key.']',$blog->language($language->id) !== null ? $blog->language($language->id)->content : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('content.*') ? '' : 'valid')]) !!}
+                                    {!! Form::textarea('content['.$key.']',$blog->language($language->id) !== null ? $blog->language($language->id)->content : "",['class' => 'validate materialize-textarea '.($errors->has('content.*') ? '' : 'valid'),'id'=>"content-".$language->locale]) !!}
 {{--                                    {!! Form::label('content['.$key.']',__('admin.content')) !!}--}}
 
                                     @error('content.*')
@@ -123,6 +123,8 @@
                             </div>
                         @endforeach
                     </div>
+                    <label>{{__('client.main_image')}}</label>
+
                     <div class="form-group">
                         <div class="input-images"></div>
                         @if ($errors->has('images'))
@@ -130,6 +132,13 @@
                                             {{ $errors->first('images') }}
                                         </span>
                         @endif
+                        @error('image')
+                        <small class="errorTxt4">
+                            <div class="error">
+                                {{$message}}
+                            </div>
+                        </small>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
@@ -145,6 +154,20 @@
     </div>
 
     <script src="{{asset("ckeditor/ckeditor.js")}}"></script>
+    <script>
+
+
+        @foreach($localizations['data'] as $item)
+        CKEDITOR.replace('content-{{$item['locale']}}', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token(),'type'=>'blog'])}}",
+            filebrowserUploadMethod: 'form'
+        });
+        @endforeach
+        CKEDITOR.replace('content-{{$localizations['current']['locale']}}', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token(),'type'=>'blog'])}}",
+            filebrowserUploadMethod: 'form'
+        });
+    </script>
 @endsection
 
 {{-- vendor script --}}

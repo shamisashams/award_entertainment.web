@@ -78,7 +78,7 @@
 {{--                                </div>--}}
 
                                 <div class="input-field ">
-                                    {!! Form::textarea('content_1['.$key.']',$page->language($language->id) !== null ? $page->language($language->id)->content_1 : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('content_1.*') ? '' : 'valid')]) !!}
+                                    {!! Form::textarea('content_1['.$key.']',$page->language($language->id) !== null ? $page->language($language->id)->content_1 : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('content_1.*') ? '' : 'valid'),'id'=>'content-1-'.$language->locale]) !!}
                                     {{--                                    {!! Form::label('content['.$key.']',__('admin.content')) !!}--}}
 
                                     @error('content_1.*')
@@ -91,7 +91,7 @@
                                 </div>
 
                                 <div class="input-field ">
-                                    {!! Form::textarea('content_2['.$key.']',$page->language($language->id) !== null ? $page->language($language->id)->content_2 : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('content_2.*') ? '' : 'valid')]) !!}
+                                    {!! Form::textarea('content_2['.$key.']',$page->language($language->id) !== null ? $page->language($language->id)->content_2 : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('content_2.*') ? '' : 'valid'),'id'=>'content-2-'.$language->locale]) !!}
                                                                         {!! Form::label('content_2['.$key.']',__('admin.content_2')) !!}
 
                                     @error('content_2.*')
@@ -129,6 +129,28 @@
     </div>
 
     <script src="{{asset("ckeditor/ckeditor.js")}}"></script>
+    <script>
+
+
+        @foreach($localizations['data'] as $item)
+        CKEDITOR.replace('content-1-{{$item['locale']}}', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token(),'type'=>'page'])}}",
+            filebrowserUploadMethod: 'form'
+        });
+        CKEDITOR.replace('content-2-{{$item['locale']}}', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token(),'type'=>'page'])}}",
+            filebrowserUploadMethod: 'form'
+        });
+        @endforeach
+        CKEDITOR.replace('content-1-{{$localizations['current']['locale']}}', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token(),'type'=>'page'])}}",
+            filebrowserUploadMethod: 'form'
+        });
+        CKEDITOR.replace('content-2-{{$localizations['current']['locale']}}', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token(),'type'=>'page'])}}",
+            filebrowserUploadMethod: 'form'
+        });
+    </script>
 @endsection
 
 {{-- vendor script --}}

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\BlogController as BlogControllerAdmin;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\Client\AboutController;
 use App\Http\Controllers\Client\BlogController as BlogControllerClient;
 use App\Http\Controllers\Admin\CategoryController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
+Route::post('ckeditor/image_upload/{type}', [CKEditorController::class, 'upload'])->name('upload');
 
 
 Route::prefix('{locale?}')

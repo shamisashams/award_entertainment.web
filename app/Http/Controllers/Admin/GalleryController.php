@@ -53,15 +53,13 @@ class GalleryController extends Controller
             'languages' => $this->activeLanguages(),
             "shortDescription" => $request["short-description"],
             "content" => $request["content"],
-            "content_2" => $request["content_2"],
-            "content_3" => $request["content_3"],
             "slug" => $request["slug"],
         ];
         $gallery = $this->galleryRepository->create($data);
 
         // Save Files
         if ($request->hasFile('images')) {
-            $gallery = $this->galleryRepository->saveFiles($gallery->id, $request);
+            $gallery = $this->galleryRepository->saveFile($gallery->id, $request);
         }
 
         return redirect(locale_route('gallery.index', $gallery->id))->with('success', 'Gallery created.');
@@ -93,14 +91,12 @@ class GalleryController extends Controller
             'languages' => $this->activeLanguages(),
             "shortDescription" => $request["short-description"],
             "content" => $request["content"],
-            "content_2" => $request["content_2"],
-            "content_3" => $request["content_3"],
             "slug" => $request["slug"],
         ];
         $gallery = $this->galleryRepository->update($id, $data);
 
         // Update Files
-        $this->galleryRepository->saveFiles($id, $request);
+        $this->galleryRepository->saveFile($id, $request);
 
         return redirect(locale_route('gallery.show', $gallery->id))->with('success', 'Gallery updated.');
 

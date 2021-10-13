@@ -4,6 +4,8 @@ namespace App\Repositories\Eloquent;
 
 use App\Http\Request\Admin\BlogRequest;
 use App\Http\Request\Admin\ProductRequest;
+use App\Http\Requests\Admin\GalleryRequest;
+use App\Models\File;
 use App\Models\Gallery;
 use App\Models\ProductAnswers;
 use App\Models\ProductLanguage;
@@ -53,8 +55,6 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
                     'description' => $attributes['description'][$language['id']],
                     'short_description' => $attributes['shortDescription'][$language['id']],
                     'content' => $attributes['content'][$language['id']],
-                    'content_2' => $attributes['content_2'][$language['id']],
-                    'content_3' => $attributes['content_3'][$language['id']],
                     'slug' => $attributes['slug'][$language['id']],
                 ];
             }
@@ -110,8 +110,6 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
                         'description' => $data['description'][$language['id']],
                         'short_description' => $data['shortDescription'][$language['id']],
                         'content' => $data['content'][$language['id']],
-                        'content_2' => $data['content_2'][$language['id']],
-                        'content_3' => $data['content_3'][$language['id']],
                         'slug' => $data['slug'][$language['id']],
                     ]);
                 }else{
@@ -121,8 +119,6 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
                         'description' => $data['description'][$language['id']],
                         'short_description' => $data['shortDescription'][$language['id']],
                         'content' => $data['content'][$language['id']],
-                        'content_2' => $data['content_2'][$language['id']],
-                        'content_3' => $data['content_3'][$language['id']],
                         'slug' => $data['slug'][$language['id']],
                     ]);
                 }
@@ -136,5 +132,61 @@ class GalleryRepository extends BaseRepository implements GalleryRepositoryInter
         }
     }
 
+
+    public function saveFile(int $id, GalleryRequest $request): Gallery
+    {
+
+        $this->model = $this->findOrFail($id);
+
+        // Delete old files if exist
+        if (count($this->model->files)) {
+            foreach ($this->model->files as $file) {
+                if (!$request->old_images) {
+                    $file->delete();
+                    continue;
+                }
+                if (!in_array((string)$file->id, $request->old_images, true)) {
+                    $file->delete();
+                }
+            }
+        }
+
+        $oldMain = json_decode($request->old_main_image);
+        if (!$oldMain && $this->model->mainFile) {
+            $this->model->mainFile->delete();
+        }
+
+
+        if ($request->hasFile('main-image')) {
+            // Get Name Of model
+            $image = $request->file('main-image');
+            $imagename = date('Ymhs') . str_replace(' ', '', $image->getClientOriginalName());
+            $destination = base_path() . '/storage/app/public/' . 'Gallery' . '/' . $this->model->id;
+            $image->move($destination, $imagename);
+            $this->model->files()->create([
+                'title' => $imagename,
+                'path' => 'storage/' . 'Gallery' . '/' . $this->model->id,
+                'format' => $image->getClientOriginalExtension(),
+                'type' => File::FILE_MAIN
+            ]);
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $file) {
+                $imagename = date('Ymhs') . str_replace(' ', '', $file->getClientOriginalName());
+                $destination = base_path() . '/storage/app/public/' . 'Gallery' . '/' . $this->model->id;
+                $request->file('images')[$key]->move($destination, $imagename);
+                $this->model->files()->create([
+                    'title' => $imagename,
+                    'path' => 'storage/' . 'Gallery' . '/' . $this->model->id,
+                    'format' => $file->getClientOriginalExtension(),
+                    'type' => File::FILE_DEFAULT
+                ]);
+            }
+        }
+
+
+        return $this->model;
+    }
 
 }

@@ -13,7 +13,8 @@
                 <div class="display-flex media">
                     <div class="media-body">
                         <h6 class="media-heading">
-                            <span class="users-view-name">{{count($gallery->availableLanguage) >0 ? $gallery->availableLanguage[0]->value : ""}} </span>
+                            <span
+                                class="users-view-name">{{count($gallery->availableLanguage) >0 ? $gallery->availableLanguage[0]->value : ""}} </span>
                         </h6>
                     </div>
                 </div>
@@ -95,15 +96,7 @@
                                     </tr>
                                     <tr>
                                         <td>@lang('admin.content'):</td>
-                                        <td>{{$language->content}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@lang('admin.content_2'):</td>
-                                        <td>{{$language->content_2}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@lang('admin.content_3'):</td>
-                                        <td>{{$language->content_3}}</td>
+                                        <td>{!!$language->content!!}</td>
                                     </tr>
                                     <tr>
                                         <td>@lang('admin.slug'):</td>
@@ -133,11 +126,24 @@
                 <div class="popup-gallery">
                     <div class="gallery-sizer"></div>
                     <div class="row">
+                        @if($gallery->mainFile)
+                            <div class="col s12 m6 l4 xl2">
+                                <div>
+                                    <a href="{{asset($gallery->mainFile->path.'/'.$gallery->mainFile->title)}}"
+                                       target="_blank" title="$file->title">
+                                        <img src="{{asset($gallery->mainFile->path.'/'.$gallery->mainFile->title)}}"
+                                             class="responsive-img mb-10" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
                         @foreach($gallery->files as $file)
                             <div class="col s12 m6 l4 xl2">
                                 <div>
-                                    <a href="{{asset($file->path.'/'.$file->title)}}" target="_blank" title="$file->title">
-                                        <img src="{{asset($file->path.'/'.$file->title)}}" class="responsive-img mb-10" alt="">
+                                    <a href="{{asset($file->path.'/'.$file->title)}}" target="_blank"
+                                       title="$file->title">
+                                        <img src="{{asset($file->path.'/'.$file->title)}}" class="responsive-img mb-10"
+                                             alt="">
                                     </a>
                                 </div>
                             </div>

@@ -84,7 +84,7 @@ class BlogController extends Controller
 
         // Save Files
         if ($request->hasFile('images')) {
-            $blog = $this->blogRepository->saveFiles($blog->id, $request);
+            $blog = $this->blogRepository->saveFile($blog->id, $request);
         }
 
         return redirect(locale_route('blog.show', $blog->id))->with('success', 'Slider created.');
@@ -106,7 +106,7 @@ class BlogController extends Controller
         $blog = $this->blogRepository->update($id, $data);
 
         // Update Files
-        $this->blogRepository->saveFiles($id, $request);
+        $this->blogRepository->saveFile($id, $request);
 
         return redirect(locale_route('blog.show', $blog->id))->with('success', 'Blog updated.');
 

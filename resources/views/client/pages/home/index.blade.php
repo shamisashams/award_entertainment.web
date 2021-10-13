@@ -105,10 +105,10 @@
                                         <a href="{{ locale_route('client.gallery.show', $gallery->id) }}"
                                            class="{{in_array($loop->index, [0,7])  ? "large" : ""}}">
                                             <div class="gallery_box" id="{{ $gallery->id }}">
-                                                @if(count($gallery->files)>0)
+                                                @if($gallery->mainFile)
                                                     <div class="img_overlay">
                                                         <img id="img_gallery_{{ $gallery->id }}"
-                                                             src="{{ asset($gallery->files[0]->path."/".$gallery->files[0]->title) }}"
+                                                             src="{{ asset($gallery->mainFile->path."/".$gallery->mainFile->title) }}"
                                                              alt=""/>
                                                     </div>
                                                 @endif

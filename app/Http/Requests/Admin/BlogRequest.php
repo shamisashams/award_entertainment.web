@@ -35,11 +35,19 @@ class BlogRequest extends FormRequest
             $data ['title.' . $defaultLanguage->id] = 'required|string|max:255';
             $data ['description.' . $defaultLanguage->id] = 'nullable|string|max:255';
             $data ['short_description.' . $defaultLanguage->id] = 'nullable|string|max:255';
-            $data ['content.' . $defaultLanguage->id] = 'required|string|max:10240';
+            $data ['content.' . $defaultLanguage->id] = 'required|string';
             $data ['slug.' . $defaultLanguage->id] = 'required|string|max:255';
             $data ['city.' . $defaultLanguage->id] = 'nullable|string|max:255';
             $data ['country.' . $defaultLanguage->id] = 'nullable|string|max:255';
+            $data['images'] = 'max:1';
         }
         return $data;
+    }
+
+    public function messages()
+    {
+        return [
+            'images.max' => __('client.file_max_count'),
+        ];
     }
 }

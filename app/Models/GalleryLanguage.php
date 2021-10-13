@@ -16,8 +16,6 @@ class GalleryLanguage extends Model
         "description",
         "short_description",
         "content",
-        "content_2",
-        "content_3",
         "slug",
     ];
 }

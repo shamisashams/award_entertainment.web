@@ -12,24 +12,24 @@
     <section class="gallery_page detail">
         <section class="gallery_detail gallery">
             <!-- return btn - only  on home page -->
-{{--            <a href="{{ route('client.gallery.index') }}">--}}
-{{--                <button class="flex go_back_btn">--}}
-{{--                    <img src="/img/icons/arrows/2.png" alt=""/>--}}
-{{--                    <div>Go Back</div>--}}
-{{--                </button>--}}
-{{--            </a>--}}
+        {{--            <a href="{{ route('client.gallery.index') }}">--}}
+        {{--                <button class="flex go_back_btn">--}}
+        {{--                    <img src="/img/icons/arrows/2.png" alt=""/>--}}
+        {{--                    <div>Go Back</div>--}}
+        {{--                </button>--}}
+        {{--            </a>--}}
 
-            <!-------->
-            @if(count($gallery->availableLanguage) >0 && count($gallery->files) >0 )
+        <!-------->
+            @if(count($gallery->availableLanguage) >0 && $gallery->mainFile )
                 <div class="flex flexes a">
                     <div class="context">
-{{--                        <div class="title">{{ $gallery->availableLanguage[0]->title }}</div>--}}
+                        {{--                        <div class="title">{{ $gallery->availableLanguage[0]->title }}</div>--}}
                         <div class="paragraph">
                             {!! $gallery->availableLanguage[0]->content !!}
                         </div>
                     </div>
                     <div class="img">
-                        <img src="{{ asset($gallery->files[0]->path."/".$gallery->files[0]->title) }}" alt=""/>
+                        <img src="{{ asset($gallery->mainFile->path."/".$gallery->mainFile->title) }}" alt=""/>
                     </div>
                 </div>
             @endif
@@ -49,22 +49,8 @@
                     <div class="context">
                         {{--                        <div class="title">Lorem Ipsum</div>--}}
                         <div class="paragraph">
-                            {!! $gallery->availableLanguage[0]->content_2 !!}
+                            {!! $gallery->availableLanguage[0]->content !!}
                         </div>
-                    </div>
-                </div>
-            @endif
-            @if(count($gallery->availableLanguage) >0 && count($gallery->files) >1)
-                <div class="flex flexes a">
-                    <div class="context">
-                        {{--                        <div class="title">Lorem Ipsum</div>--}}
-                        <div class="paragraph">
-                            {!! $gallery->availableLanguage[0]->content_3 !!}
-
-                        </div>
-                    </div>
-                    <div class="img">
-                        <img src="{{ asset($gallery->files[1]->path."/".$gallery->files[1]->title) }}" alt=""/>
                     </div>
                 </div>
             @endif
@@ -143,7 +129,7 @@
     </section>
 
     <div class="fixed_frame vertical">
-        
+
 
     </div>
     <button id="footer_btn">
@@ -178,21 +164,21 @@
         </svg>
     </button>
     <div class="left_logos flex" style='z-index: 190;'>
-            @foreach($companies as $company)
-                <a href="{{ $company->company_link ?? "#" }}" class="ll each_left_logo"
-                   target="{{ $company->company_link ? "_blank" : "_self" }}">
-                    @if(count($company->files)>0)
-                        <img src="{{ asset($company->files[0]->path."/".$company->files[0]->title) }}"
-                             alt="{{$company->files[0]->title}}"/>
-                    @endif
-                    <div class="description">
-                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
+        @foreach($companies as $company)
+            <a href="{{ $company->company_link ?? "#" }}" class="ll each_left_logo"
+               target="{{ $company->company_link ? "_blank" : "_self" }}">
+                @if(count($company->files)>0)
+                    <img src="{{ asset($company->files[0]->path."/".$company->files[0]->title) }}"
+                         alt="{{$company->files[0]->title}}"/>
+                @endif
+                <div class="description">
+                    {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
 
-                    </div>
-                </a>
+                </div>
+            </a>
 
-            @endforeach
-        </div>
+        @endforeach
+    </div>
     <div class="gallery_popup">
         <div class="slider">
             <button class="close_popup">
