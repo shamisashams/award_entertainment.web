@@ -77,7 +77,7 @@
                                     @lang("client.gallery_text")
                                 </div>
                             </div>
-                            <a href="{{ route("client.gallery.index") }}">
+                            <a href="{{ locale_route("client.gallery.index") }}">
                                 <div class="view_all">
                                     <div class="paragraph">
                                         @lang("client.view_all_gallery")
@@ -159,7 +159,7 @@
                                     @lang("client.blog_text")
                                 </div>
                             </div>
-                            <a href="{{ route('client.blog.index') }}">
+                            <a href="{{ locale_route('client.blog.index') }}">
                                 <div class="view_all">
                                     <div class="paragraph">
                                         @lang("client.view_all_blogs")
@@ -244,7 +244,7 @@
 
                                 </div>
                             </div>
-                            <a href="{{ route("about") }}">
+                            <a href="{{ locale_route("about") }}">
                                 <div class="view_all">
                                     <div class="paragraph">
                                         @lang("client.about_us_view_all")

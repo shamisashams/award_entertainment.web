@@ -6,10 +6,10 @@
     <a href="/" class="logo flex ">
         <img src="/img/logo/1.png" alt="" />    </a>
     <div class="navbar">
-        <a href="{{ route("home.index") }}" class="nav {{ request()->routeIs("home.index") ? "active" : "" }}">@lang("client.home_navigation")</a>
-        <a href="{{ route("client.gallery.index") }}" class="nav {{ request()->routeIs("client.gallery.index") || request()->routeIs('client.gallery.show') ? "active" : "" }}">@lang("client.gallery_navigation")</a>
-        <a href="{{ route('client.blog.index') }}" class="nav {{ request()->routeIs("client.blog.index") ? "active" : "" }}">@lang("client.blog_navigation")</a>
-        <a href="{{ route("about") }}" class="nav {{ request()->routeIs("about") ? "active" : "" }}">@lang("client.about_us_navigation")</a>
+        <a href="{{ locale_route("home.index") }}" class="nav {{ request()->routeIs("home.index") ? "active" : "" }}">@lang("client.home_navigation")</a>
+        <a href="{{ locale_route("client.gallery.index") }}" class="nav {{ request()->routeIs("client.gallery.index") || request()->routeIs('client.gallery.show') ? "active" : "" }}">@lang("client.gallery_navigation")</a>
+        <a href="{{ locale_route('client.blog.index') }}" class="nav {{ request()->routeIs("client.blog.index") ? "active" : "" }}">@lang("client.blog_navigation")</a>
+        <a href="{{ locale_route("about") }}" class="nav {{ request()->routeIs("about") ? "active" : "" }}">@lang("client.about_us_navigation")</a>
         <a href="/#contact_section" class="nav">@lang("client.contact_us_navigation")</a>
     </div>
     <div id="nav_menu"></div>
