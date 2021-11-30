@@ -38,6 +38,8 @@ const getUrl = () => {
     navigator.clipboard.writeText(window.location.href);
     alert("Copied the text: " + window.location.href);
 };
+const branchPopup = document.querySelectorAll(".branch_popup");
+const close_branch_popup = document.querySelectorAll(".close_branch_popup");
 
 // header mobile
 
@@ -555,7 +557,7 @@ if ((openGPopup, galleryPopup)) {
 // leftLogos.addEventListener("mouseout", handleHover.bind(1));
 
 eachLeftLogo.forEach((el) => {
-    console.log(el)
+    console.log(el);
     el.addEventListener("mouseover", () => {
         console.log("asd");
         eachLeftLogo.forEach((el) => {
@@ -566,6 +568,23 @@ eachLeftLogo.forEach((el) => {
     el.addEventListener("mouseout", () => {
         eachLeftLogo.forEach((el) => {
             el.style.opacity = "1";
+        });
+    });
+});
+
+// branch popup
+eachLeftLogo.forEach((el, i) => {
+    el.addEventListener("click", () => {
+        branchPopup.forEach((el) => {
+            el.classList.remove("clicked");
+        });
+        branchPopup[i].classList.add("clicked");
+    });
+});
+close_branch_popup.forEach((el) => {
+    el.addEventListener("click", () => {
+        branchPopup.forEach((el) => {
+            el.classList.remove("clicked");
         });
     });
 });

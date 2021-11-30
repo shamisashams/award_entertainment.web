@@ -3,8 +3,8 @@
 {{--    <div class="the_page_title" id="gallery_title">Our Galleries</div>--}}
 
     {{--    @yield("miniheader")--}}
-    <a href="/" class="logo flex ">
-        <img src="/img/logo/1.png" alt="" />    </a>
+    <div class="logo flex ">
+        <img src="/img/logo/1.png" alt="" />    </div>
     <div class="navbar">
         <a href="{{ locale_route("home.index") }}" class="nav {{ request()->routeIs("home.index") ? "active" : "" }}">@lang("client.home_navigation")</a>
         <a href="{{ locale_route("client.gallery.index") }}" class="nav {{ request()->routeIs("client.gallery.index") || request()->routeIs('client.gallery.show') ? "active" : "" }}">@lang("client.gallery_navigation")</a>
