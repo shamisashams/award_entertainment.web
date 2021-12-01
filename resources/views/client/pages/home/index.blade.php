@@ -459,7 +459,7 @@
 
         </div>
         <div class="left_logos flex">
-            @foreach($companies as $company)
+            <!-- @foreach($companies as $company)
                 <a href="{{ $company->company_link ?? "#" }}" class="ll each_left_logo" target="{{ $company->company_link ? "_blank" : "_self" }}">
                     @if(count($company->files)>0)
                         <img src="{{ asset($company->files[0]->path."/".$company->files[0]->title) }}" alt="{{$company->files[0]->titl}}"/>
@@ -470,7 +470,28 @@
                     </div>
                 </a>
 
-            @endforeach
+            @endforeach -->
+            <a href="#" class="ll each_left_logo">
+                        <img src="https://awardholding.com/storage/Company/4/2021090153transport-1.png" />
+                    <div class="description">
+                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
+
+                    </div>
+                </a>
+            <a href="#" class="ll each_left_logo">
+                        <img src="https://awardholding.com/storage/Company/4/2021090153transport-1.png" />
+                    <div class="description">
+                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
+
+                    </div>
+                </a>
+            <a href="#" class="ll each_left_logo">
+                        <img src="https://awardholding.com/storage/Company/4/2021090153transport-1.png" />
+                    <div class="description">
+                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
+
+                    </div>
+                </a>
         </div>
 
         <div class="right_div"></div>
@@ -506,6 +527,283 @@
             </svg>
         </button>
 
+    </div>
+
+    <div class="branch_popup">
+        <button class="close_branch_popup"><img src="img/icons/other/close2.png" alt=""></button>
+        <div class="container">
+
+            <div class="bp_left">
+                <div class="main_title" style="color: #ED1C24;">transport</div>
+                <div class="block">
+                    <div class="title">History</div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+                <div class="block">
+                    <div class="title">Mission</div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime molestiae reiciendis nemo repellat nobis sunt libero, rerum eaque quod? Delectusctetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime sunt libero, rerum eaque quod? De.</p>
+                </div>
+                <div class="block">
+                    <div class="title">Vission</div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime molestiae reiciendis nemo repellat nobis sunt libero, rerumt nobis sunt libero, rerum eaque quod? Delectus.</p>
+                </div>
+            </div>
+            <div class="bp_right">
+                
+                <div class="title">Gallery</div>
+                <div class="img_row">
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                </div>
+                <div class="title">Documents to download</div>
+                <div class="flex">
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="branch_popup">
+        <button class="close_branch_popup"><img src="img/icons/other/close2.png" alt=""></button>
+        <div class="container">
+
+            <div class="bp_left">
+                <div class="main_title" style="color: #F5821F;">driling</div>
+                <div class="block">
+                    <div class="title">History</div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+                <div class="block">
+                    <div class="title">Mission</div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime molestiae reiciendis nemo repellat nobis sunt libero, rerum eaque quod? Delectusctetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime sunt libero, rerum eaque quod? De.</p>
+                </div>
+                <div class="block">
+                    <div class="title">Vission</div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime molestiae reiciendis nemo repellat nobis sunt libero, rerumt nobis sunt libero, rerum eaque quod? Delectus.</p>
+                </div>
+            </div>
+            <div class="bp_right">
+                
+                <div class="title">Gallery</div>
+                <div class="img_row">
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                </div>
+                <div class="title">Documents to download</div>
+                <div class="flex">
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="branch_popup">
+        <button class="close_branch_popup"><img src="img/icons/other/close2.png" alt=""></button>
+        <div class="container">
+
+            <div class="bp_left">
+                <div class="main_title" style="color: #68AD46;">construction</div>
+                <div class="block">
+                    <div class="title">History</div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+                <div class="block">
+                    <div class="title">Mission</div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime molestiae reiciendis nemo repellat nobis sunt libero, rerum eaque quod? Delectusctetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime sunt libero, rerum eaque quod? De.</p>
+                </div>
+                <div class="block">
+                    <div class="title">Vission</div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe incidunt aspernatur qui totam aperiam, dolor beatae eligendi maiores, maxime molestiae reiciendis nemo repellat nobis sunt libero, rerumt nobis sunt libero, rerum eaque quod? Delectus.</p>
+                </div>
+            </div>
+            <div class="bp_right">
+                
+                <div class="title">Gallery</div>
+                <div class="img_row">
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/15/2021100148თოვლიტრაქტორიდაევარდიგვ21-22-23.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>
+                    </div>
+                    <div class="gallery_box">
+                        <div class="img_overlay">
+                            <img src="https://awardholding.com/storage/Gallery/14/2021100114თოვლიანიგზა.jpg" alt=""/>
+                        </div>
+                        <div class="caption">Our blog covers news and inn<br/><span>Our blog covers news and innovations inOur blog covers news and innovations in</span></div>
+                    </div>
+                </div>
+                <div class="title">Documents to download</div>
+                <div class="flex">
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                    <div class="document">
+                        <img src="img/icons/other/pdf.png" alt="">
+                        <p>Lorem Ipsum is simply</p>
+                        <a href="#">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
