@@ -13,4 +13,11 @@ class CompanyLanguage extends Model
         "company_id",
         "language_id",
         "description",
+        "content_title",
+        "content_description",
+        "content_sub_title_1",
+        "content_sub_title_2",
+        "content_sub_title_3",
+        "content_description_2",
+        "content_description_3",
     ];}

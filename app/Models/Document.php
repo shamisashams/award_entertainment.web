@@ -2,29 +2,30 @@
 
 namespace App\Models;
 
-use App\Traits\ScopeCompanyFilter;
+use App\Traits\ScopeDocumentFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Company extends Model
+class Document extends Model
 {
-    use HasFactory, ScopeCompanyFilter;
-    protected $fillable =[
+    use HasFactory, SoftDeletes, ScopeDocumentFilter;
+    protected $fillable = [
         "status",
-        "company_link"
+        "link"
     ];
+
     public function languages(): HasMany
     {
-        return $this->hasMany(CompanyLanguage::class);
+        return $this->hasMany(DocumentLanguage::class);
     }
+
     public function availableLanguage()
     {
         return $this->languages()->where('language_id', '=', app()->getLocale());
     }
-
 
 
     public function getFilterScopes(): array
@@ -34,9 +35,9 @@ class Company extends Model
                 'hasParam' => true,
                 'scopeMethod' => 'id'
             ],
-            'description' => [
+            'title' => [
                 'hasParam' => true,
-                'scopeMethod' => 'description'
+                'scopeMethod' => 'title'
             ],
             'status' => [
                 'hasParam' => true,
@@ -44,7 +45,9 @@ class Company extends Model
             ],
         ];
     }
-
+//    public function companies(){
+//        return $this->belongsToMany(Company::class);
+//    }
 
     public function language(string $locale = null)
     {
@@ -53,21 +56,22 @@ class Company extends Model
         }
         return $this->languages()->where('language_id', $locale)->first();
     }
-    public function files(): MorphMany
-    {
-        return $this->morphMany(File::class, 'fileable')->where(['type' => File::FILE_DEFAULT]);
+    public function company(){
+        return $this->belongsToMany(Company::class);
     }
-
-    public function file(): MorphOne
+    public function companies()
     {
-        return $this->morphOne(File::class, 'fileable')->where(['type' => File::FILE_DEFAULT]);
+        return $this->HasMany(CompanyDocument::class);
     }
-
-    public function mainFile(): MorphOne
+    public function companyCheck(string $companyId)
     {
-        return $this->morphOne(File::class, 'fileable')->where(['type' => File::FILE_MAIN]);
+        return $this->companies()->where('company_id', $companyId)->first();
     }
-    public function documents(){
-        return $this->belongsToMany(Document::class);
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function pdf(): MorphOne
+    {
+        return $this->morphOne(File::class, 'fileable')->where('format', '=', 'pdf');
     }
 }

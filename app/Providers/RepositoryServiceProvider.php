@@ -16,6 +16,7 @@ use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\CertificateRepositoryInterface;
 use App\Repositories\CityRepositoryInterface;
 use App\Repositories\CompanyRepositoryInterface;
+use App\Repositories\DocumentRepositoryInterface;
 use App\Repositories\Eloquent\AnswerRepository;
 use App\Repositories\Eloquent\Base\BaseRepository;
 use App\Repositories\Eloquent\Base\EloquentRepositoryInterface;
@@ -24,6 +25,7 @@ use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\CertificateRepository;
 use App\Repositories\Eloquent\CityRepository;
 use App\Repositories\Eloquent\CompanyRepository;
+use App\Repositories\Eloquent\DocumentRepository;
 use App\Repositories\Eloquent\FeatureRepository;
 use App\Repositories\Eloquent\GalleryRepository;
 use App\Repositories\Eloquent\HnhRepository;
@@ -79,6 +81,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(GalleryRepositoryInterface::class,GalleryRepository::class);
         $this->app->bind(PageRepositoryInterface::class,PageRepository::class);
         $this->app->bind(CompanyRepositoryInterface::class,CompanyRepository::class);
-
+        $this->app->bind(DocumentRepositoryInterface::class,DocumentRepository::class);
     }
 }

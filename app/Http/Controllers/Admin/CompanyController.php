@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-
     protected $companyRepository;
 
     public function __construct(CompanyRepositoryInterface $companyRepository)
@@ -75,12 +74,19 @@ class CompanyController extends Controller
             'company_link' => $request['company_link'],
             'languages' => $this->activeLanguages(),
             'description' => $request['description'],
+            'content_title' => $request['content_title'],
+            'content_sub_title_1' => $request['content_sub_title_1'],
+            'content_sub_title_2' => $request['content_sub_title_2'],
+            'content_sub_title_3' => $request['content_sub_title_3'],
+            'content_description' => $request['content_description'],
+            'content_description_2' => $request['content_description_2'],
+            'content_description_3' => $request['content_description_3'],
         ];
         $company = $this->companyRepository->create($data);
 
         // Save Files
-        if ($request->hasFile('images')) {
-            $gallery = $this->companyRepository->saveFiles($company->id, $request);
+        if ($request->hasFile('images')|| $request->hasFile('main-image')) {
+            $company = $this->companyRepository->saveFile($company->id, $request);
         }
 
         return redirect(locale_route('company.show', $company->id))->with('success', 'Company created.');
@@ -92,12 +98,19 @@ class CompanyController extends Controller
             'status' => (bool)$request['status'],
             'company_link' => $request['company_link'],
             'description' => $request['description'],
+            'content_title' => $request['content_title'],
+            'content_sub_title_1' => $request['content_sub_title_1'],
+            'content_sub_title_2' => $request['content_sub_title_2'],
+            'content_sub_title_3' => $request['content_sub_title_3'],
+            'content_description' => $request['content_description'],
+            'content_description_2' => $request['content_description_2'],
+            'content_description_3' => $request['content_description_3'],
             'languages' => $this->activeLanguages(),
         ];
         $company = $this->companyRepository->update($id, $data);
 
         // Update Files
-        $this->companyRepository->saveFiles($id, $request);
+        $this->companyRepository->saveFile($id, $request);
 
 
         return redirect(locale_route('company.show', $company->id))->with('success', 'Company updated.');

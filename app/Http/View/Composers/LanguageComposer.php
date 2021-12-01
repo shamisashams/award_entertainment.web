@@ -34,7 +34,9 @@ class LanguageComposer
 
         $defaultLanguage = Language::where('default', true)->first();
         $activeLanguage = Language::where('locale', $this->languageSlug())->first();
-        $companies = Company::with(["files", "availableLanguage"])->where("status", 1)->get();
+        $companies = Company::with(["files", "availableLanguage", "documents"=>function($query){
+            $query->with("availableLanguage")->where("status", 1);
+        }, "mainFile"])->where("status", 1)->get();
 
 //        $categories = Category::where('status',true)->get();
 
@@ -105,7 +107,8 @@ class LanguageComposer
             ->with('gphone',$gphone)
             ->with("gcity",$gcity)
             ->with("gabout", $gabout)
-            ->with("companies", $companies)
+            ->with("comp", $companies)
+//            ->with("companies", $companies)
             ->with('defaultLanguage', $defaultLanguage ? $defaultLanguage->id : null);
     }
 

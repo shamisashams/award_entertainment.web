@@ -12,10 +12,10 @@
 
                 <div class="card-content">
                     <a class="btn-floating btn-large primary-text gradient-shadow compose-email-trigger "
-                       href="{{locale_route('company.create')}}">
+                       href="{{locale_route('document.create')}}">
                         <i class="material-icons">add</i>
                     </a>
-                    <h4 class="card-title mt-2">@lang('admin.company')</h4>
+                    <h4 class="card-title mt-2">@lang('admin.document')</h4>
                     <div class="row">
                         <div class="col s12">
                             <form class="mr-0 p-0">
@@ -23,7 +23,7 @@
                                     <thead>
                                     <tr>
                                         <th>@lang('admin.id')</th>
-                                        <th>@lang('admin.description')</th>
+                                        <th>@lang('admin.title')</th>
                                         <th>@lang('admin.status')</th>
                                         <th>@lang('admin.action')</th>
                                     </tr>
@@ -35,9 +35,9 @@
                                                    class="validate {{$errors->has('id') ? '' : 'valid'}}">
                                         </th>
                                         <th>
-                                            <input type="text" name="description" onchange="this.form.submit()"
-                                                   value="{{Request::get('description')}}"
-                                                   class="validate {{$errors->has('description') ? '' : 'valid'}}">
+                                            <input type="text" name="title" onchange="this.form.submit()"
+                                                   value="{{Request::get('title')}}"
+                                                   class="validate {{$errors->has('title') ? '' : 'valid'}}">
                                         </th>
                                         <th>
                                             <select class="form-control" name="status" onchange="this.form.submit()">
@@ -50,18 +50,18 @@
                                         <th></th>
                                     </tr>
                                     <tbody>
-                                    @if($companies)
-                                        @foreach($companies as $company)
+                                    @if($documents)
+                                        @foreach($documents as $document)
                                             <tr>
-                                                <td>{{$company->id}}</td>
+                                                <td>{{$document->id}}</td>
                                                 <td>
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <ul class="tabs">
-                                                                @foreach($company->languages as $key => $language)
+                                                                @foreach($document->languages as $key => $language)
                                                                     @if(isset($languages[$language->language_id]))
                                                                         <li class="tab ">
-                                                                            <a href="#desc-{{$company->id}}-{{$language->language_id}}">
+                                                                            <a href="#desc-{{$document->id}}-{{$language->language_id}}">
                                                                                 {{$languages[$language->language_id]->locale}}
                                                                             </a>
                                                                         </li>
@@ -71,11 +71,11 @@
                                                         </div>
 
                                                         <div class="col sm12 mt-2">
-                                                            @foreach($company->languages as $key => $language)
+                                                            @foreach($document->languages as $key => $language)
                                                                 @if(isset($languages[$language->language_id]))
-                                                                    <div id="desc-{{$company->id}}-{{$language->language_id}}"
+                                                                    <div id="desc-{{$document->id}}-{{$language->language_id}}"
                                                                          class="">
-                                                                        {!!  substr($language->description, 0, 100) !!}
+                                                                        {!!  substr($language->title, 0, 100) !!}
                                                                     </div>
                                                                 @endif
                                                             @endforeach
@@ -84,7 +84,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @if($company->status)
+                                                    @if($document->status)
                                                         <span class="green-text">Active</span>
                                                     @else
                                                         <span class="red-text">Not active</span>
@@ -92,14 +92,14 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="{{locale_route('company.show',$company->id)}}">
+                                                    <a href="{{locale_route('document.show',$document->id)}}">
                                                         <i class="material-icons">remove_red_eye</i>
                                                     </a>
-                                                    <a href="{{locale_route('company.edit',$company->id)}}"
+                                                    <a href="{{locale_route('document.edit',$document->id)}}"
                                                        class="pl-3">
                                                         <i class="material-icons">edit</i>
                                                     </a>
-                                                    <a href="{{locale_route('company.destroy',$company->id)}}"
+                                                    <a href="{{locale_route('document.destroy',$document->id)}}"
                                                        onclick="return confirm('Are you sure?')" class="pl-3">
                                                         <i class="material-icons">delete</i>
                                                     </a>
@@ -110,7 +110,7 @@
                                     </tbody>
                                 </table>
                             </form>
-                            {{ $companies->appends(request()->input())->links('admin.vendor.pagination.material') }}
+                            {{ $documents->appends(request()->input())->links('admin.vendor.pagination.material') }}
                         </div>
                     </div>
                 </div>

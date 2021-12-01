@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AnswerController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\BlogController as BlogControllerAdmin;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\Client\AboutController;
@@ -76,6 +77,9 @@ Route::prefix('{locale?}')
                 Route::resource('company', CompanyController::class);
                 Route::get('company/{company}/destroy', [CompanyController::class, 'destroy'])->name('company.destroy');
 
+                //Document
+                Route::resource('document', DocumentController::class);
+                Route::get('document/{document}/destroy', [DocumentController::class, 'destroy'])->name('document.destroy');
             });
         });
 
