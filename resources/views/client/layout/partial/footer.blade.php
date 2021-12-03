@@ -1,32 +1,5 @@
 @if(! (request()->routeIs("home.index") || request()->routeIs("client.gallery.show")))
     <div class="fixed_frame vertical">
-        <div class="left_logos flex">
-            @foreach($comp as $company)
-                {{--                <a href="{{ $company->company_link ?? "#" }}" class="ll each_left_logo"--}}
-                {{--                   target="{{ $company->company_link ? "_blank" : "_self" }}">--}}
-                {{--                    @if(count($company->files)>0)--}}
-                {{--                        <img src="{{ asset($company->files[0]->path."/".$company->files[0]->title) }}"--}}
-                {{--                             alt="{{$company->files[0]->titl}}"/>--}}
-                {{--                    @endif--}}
-                {{--                    <div class="description">--}}
-                {{--                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}--}}
-
-                {{--                    </div>--}}
-                {{--                </a>--}}
-
-                <a href="#" class="ll each_left_logo">
-                    @if($company->mainFile)
-                        <img src="{{asset($company->mainFile->path.'/'.$company->mainFile->title)}}"
-                             alt="{{$company->mainFile->title}}"/>
-                    @endif
-                    <div class="description">
-                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
-
-                    </div>
-                </a>
-            @endforeach
-
-        </div>
         <div class="right_div"></div>
         <button id="footer_btn">
             <span></span>
@@ -68,6 +41,34 @@
 
         </div>
     </div>
+    <div class="left_logos flex">
+        @foreach($comp as $company)
+            {{--                <a href="{{ $company->company_link ?? "#" }}" class="ll each_left_logo"--}}
+            {{--                   target="{{ $company->company_link ? "_blank" : "_self" }}">--}}
+            {{--                    @if(count($company->files)>0)--}}
+            {{--                        <img src="{{ asset($company->files[0]->path."/".$company->files[0]->title) }}"--}}
+            {{--                             alt="{{$company->files[0]->titl}}"/>--}}
+            {{--                    @endif--}}
+            {{--                    <div class="description">--}}
+            {{--                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}--}}
+
+            {{--                    </div>--}}
+            {{--                </a>--}}
+
+            <a href="#" class="ll each_left_logo">
+                @if($company->mainFile)
+                    <img src="{{asset($company->mainFile->path.'/'.$company->mainFile->title)}}"
+                         alt="{{$company->mainFile->title}}"/>
+                @endif
+                <div class="description">
+                    {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
+
+                </div>
+            </a>
+        @endforeach
+
+    </div>
+
 @endif
 
 <a href="https://awardholding.com/ge" target="_blank" id="bottom_logo">
