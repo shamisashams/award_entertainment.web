@@ -339,31 +339,34 @@
                                         @if(count($gabout->availableLanguage) > 0)
                                             <div class="title">{{ $gcity->availableLanguage[0]->value }}</div>
                                         @endif
-                                        <div style="margin-bottom: 10px">
-                                            <strong style="color: #235164; font-size: 12px"
-                                            >@lang("client.address")</strong
-                                            >
-                                            @if(count($gabout->availableLanguage) > 0)
-                                                <div class="para">
-                                                    {{ $gaddress->availableLanguage[0]->value }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <div style="margin-bottom: 10px">
-                                            <strong style="color: #235164; font-size: 12px"
-                                            >@lang("client.phone_number")</strong
-                                            >
-                                            @if(count($gabout->availableLanguage) > 0)
-                                                <div class="para">{{ $gphone->availableLanguage[0]->value }}</div>
-                                            @endif
-                                        </div>
-                                        <div>
-                                            <strong style="color: #235164; font-size: 12px"
-                                            >@lang("client.email_address")</strong
-                                            >
-                                            @if(count($gabout->availableLanguage) > 0)
-                                                <div class="para">{{ $gemail->availableLanguage[0]->value }}</div>
-                                            @endif
+                                        <div class="flex">
+                                            <div style="margin-right: 16px">
+                                                <strong style="color: #235164; font-size: 12px"
+                                                >@lang("client.address")</strong
+                                                >
+                                                @if(count($gabout->availableLanguage) > 0)
+                                                    <div class="para">
+                                                        {{ $gaddress->availableLanguage[0]->value }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div style="margin-right: 16px">
+                                                <strong style="color: #235164; font-size: 12px"
+                                                >@lang("client.phone_number")</strong
+                                                >
+                                                @if(count($gabout->availableLanguage) > 0)
+                                                    <div class="para">{{ $gphone->availableLanguage[0]->value }}</div>
+                                                @endif
+                                            </div>
+                                            <div>
+                                                <strong style="color: #235164; font-size: 12px"
+                                                >@lang("client.email_address")</strong
+                                                >
+                                                @if(count($gabout->availableLanguage) > 0)
+                                                <div class="para"><a href="mailto:{{ $gemail->availableLanguage[0]->value }}">{{ $gemail->availableLanguage[0]->value }}</a></div>
+                                                @endif
+                                            </div>
+
                                         </div>
                                     </div>
                                     {{--                                    <div class="column" style="margin-right: 5px">--}}
@@ -484,6 +487,14 @@
                 </a>
             @endforeach
 
+             <!-- <a href="#" class="ll each_left_logo">
+                        <img src="/img/icons/other/pdf.png"
+                             />
+                    <div class="description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, aspernatur? Quas, cupiditate voluptatum a dolores voluptates ab nesciunt provident tempore quidem nisi incidunt deleniti laudantium ratione consequatur mollitia ducimus hic.
+                        <button class='link'>Visit Page</button>
+                    </div>
+                </a> -->
         </div>
 
         <div class="right_div"></div>
