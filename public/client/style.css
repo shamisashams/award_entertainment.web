@@ -469,6 +469,17 @@ img {
     top: 0;
     left: 0;
 }
+.wrapper_company {
+    display: flex;
+    flex-direction: row;
+    width: calc(413vw - 40vw);
+    transform: rotate(90deg) translateY(-100vh);
+    transform-origin: top left;
+    direction: ltr;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .wrapper .section {
     width: 100vw;
     height: 100vh;

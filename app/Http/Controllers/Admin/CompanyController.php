@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+
     protected $companyRepository;
 
     public function __construct(CompanyRepositoryInterface $companyRepository)
@@ -81,6 +82,12 @@ class CompanyController extends Controller
             'content_description' => $request['content_description'],
             'content_description_2' => $request['content_description_2'],
             'content_description_3' => $request['content_description_3'],
+            'country' => $request['country'],
+            'address' => $request['address'],
+            'phone' => $request['phone'],
+            'email' => $request['email'],
+            'facebook' => $request['facebook'],
+            'linkedin' => $request['linkedin'],
         ];
         $company = $this->companyRepository->create($data);
 
@@ -105,6 +112,12 @@ class CompanyController extends Controller
             'content_description' => $request['content_description'],
             'content_description_2' => $request['content_description_2'],
             'content_description_3' => $request['content_description_3'],
+            'country' => $request['country'],
+            'address' => $request['address'],
+            'phone' => $request['phone'],
+            'email' => $request['email'],
+            'facebook' => $request['facebook'],
+            'linkedin' => $request['linkedin'],
             'languages' => $this->activeLanguages(),
         ];
         $company = $this->companyRepository->update($id, $data);

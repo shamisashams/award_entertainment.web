@@ -1,4 +1,4 @@
-@if(! (request()->routeIs("home.index") || request()->routeIs("client.gallery.show")))
+@if(! (request()->routeIs("home.index") || request()->routeIs("client.gallery.show") || request()->routeIs("client.company.show")))
     <div class="fixed_frame vertical">
         <div class="right_div"></div>
         <button id="footer_btn">

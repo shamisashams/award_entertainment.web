@@ -11,11 +11,11 @@
 @endsection
 
 @section('content')
-        @include('client.layout.partial.header')
+    @include('client.layout.partial.header')
 
-        @yield('wrapper')
+    @yield('wrapper')
 
-        @include('client.layout.partial.footer')
+    @include('client.layout.partial.footer')
 
 
     <script
@@ -30,7 +30,7 @@
         type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
     ></script>
-    <script src="{{asset('client/js/general.js')}}"></script>
-    <script src="{{asset('client/js/slide.js')}}"></script>
+    <script src="{{asset('client/js/general.js?v='.time())}}"></script>
+    <script src="{{asset('client/js/slide.js?v='.time())}}"></script>
 @endsection
 

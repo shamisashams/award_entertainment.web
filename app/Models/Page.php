@@ -17,7 +17,8 @@ class Page extends Model
 
 
     protected $fillable =[
-        "status"
+        "status",
+        'key'
     ];
 
     public function languages(): HasMany
@@ -71,6 +72,18 @@ class Page extends Model
     public function file(): MorphOne
     {
         return $this->morphOne(File::class, 'fileable');
+    }
+
+    public function company(){
+        return $this->belongsToMany(Company::class, 'company_pages');
+    }
+    public function companies()
+    {
+        return $this->HasMany(CompanyPage::class);
+    }
+    public function companyCheck(string $companyId)
+    {
+        return $this->companies()->where('company_id', $companyId)->first();
     }
 
 }

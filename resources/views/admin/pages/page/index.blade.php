@@ -11,10 +11,10 @@
             <div id="button-trigger" class="card card card-default scrollspy">
 
                 <div class="card-content">
-                    {{--                    <a class="btn-floating btn-large primary-text gradient-shadow compose-email-trigger "--}}
-                    {{--                       href="{{locale_route('about.create')}}">--}}
-                    {{--                        <i class="material-icons">add</i>--}}
-                    {{--                    </a>--}}
+                    <a class="btn-floating btn-large primary-text gradient-shadow compose-email-trigger "
+                       href="{{locale_route('page.create')}}">
+                        <i class="material-icons">add</i>
+                    </a>
                     <h4 class="card-title mt-2">@lang('admin.about')</h4>
                     <div class="row">
                         <div class="col s12">
@@ -92,6 +92,13 @@
                                                        class="pl-3">
                                                         <i class="material-icons">edit</i>
                                                     </a>
+                                                    {{-- First two records can't be deleted --}}
+                                                    @if(!in_array($page->id, $firstTwoRecordsId))
+                                                        <a href="{{locale_route('page.destroy',$page->id)}}"
+                                                           onclick="return confirm('Are you sure?')" class="pl-3">
+                                                            <i class="material-icons">delete</i>
+                                                        </a>
+                                                    @endif
                                                 </td>
                                                 </td>
                                             </tr>
@@ -100,7 +107,7 @@
                                     </tbody>
                                 </table>
                             </form>
-                            {{--                            {{ $blogs->appends(request()->input())->links('admin.vendor.pagination.material') }}--}}
+                            {{ $pages->appends(request()->input())->links('admin.vendor.pagination.material') }}
                         </div>
                     </div>
                 </div>

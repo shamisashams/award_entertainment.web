@@ -32,12 +32,10 @@ class SliderRepository extends BaseRepository implements SliderRepositoryInterfa
         parent::__construct($model);
     }
 
+
     /**
-     * Create new model
-     *
      * @param array $attributes
-     *
-     * @return \App\Models\City
+     * @return Slider
      */
     public function create(array $attributes = []): Slider
     {
@@ -63,6 +61,8 @@ class SliderRepository extends BaseRepository implements SliderRepositoryInterfa
             }
 
             $this->model->languages()->createMany($sliderLanguages);
+            $this->model->company()->attach($attributes['companies']);
+
 
             DB::connection()->commit();
 
@@ -72,13 +72,11 @@ class SliderRepository extends BaseRepository implements SliderRepositoryInterfa
         }
     }
 
+
     /**
-     * Create new model
-     *
      * @param int $id
      * @param array $data
-     *
-     * @return \App\Models\City
+     * @return Slider
      */
     public function update(int $id, array $data = []): Slider
     {
@@ -100,6 +98,12 @@ class SliderRepository extends BaseRepository implements SliderRepositoryInterfa
                     ]);
                 }
             }
+
+            // Remove all companies
+            $this->model->company()->detach();
+            // Add new companies
+            $this->model->company()->attach($data['companies']);
+
 
             DB::connection()->commit();
 

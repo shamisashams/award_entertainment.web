@@ -557,9 +557,9 @@ if ((openGPopup, galleryPopup)) {
 // leftLogos.addEventListener("mouseout", handleHover.bind(1));
 
 eachLeftLogo.forEach((el) => {
-    console.log(el);
+    // console.log(el);
     el.addEventListener("mouseover", () => {
-        console.log("asd");
+        // console.log("asd");
         eachLeftLogo.forEach((el) => {
             el.style.opacity = "0.5";
         });
@@ -573,19 +573,19 @@ eachLeftLogo.forEach((el) => {
 });
 
 // branch popup
-eachLeftLogo.forEach((el, i) => {
-    el.addEventListener("click", () => {
-        console.log('popup')
-        branchPopup.forEach((el) => {
-            el.classList.remove("clicked");
-        });
-        branchPopup[i].classList.add("clicked");
-    });
-});
-close_branch_popup.forEach((el) => {
-    el.addEventListener("click", () => {
-        branchPopup.forEach((el) => {
-            el.classList.remove("clicked");
-        });
-    });
-});
+// eachLeftLogo.forEach((el, i) => {
+//     el.addEventListener("click", () => {
+//         console.log('popup')
+//         branchPopup.forEach((el) => {
+//             el.classList.remove("clicked");
+//         });
+//         branchPopup[i].classList.add("clicked");
+//     });
+// });
+// close_branch_popup.forEach((el) => {
+//     el.addEventListener("click", () => {
+//         branchPopup.forEach((el) => {
+//             el.classList.remove("clicked");
+//         });
+//     });
+// });

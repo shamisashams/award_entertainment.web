@@ -16,17 +16,27 @@ class Company extends Model
         "status",
         "company_link"
     ];
+
+    /**
+     * @return HasMany
+     */
     public function languages(): HasMany
     {
         return $this->hasMany(CompanyLanguage::class);
     }
+
+    /**
+     * @return HasMany
+     */
     public function availableLanguage()
     {
         return $this->languages()->where('language_id', '=', app()->getLocale());
     }
 
 
-
+    /**
+     * @return array[]
+     */
     public function getFilterScopes(): array
     {
         return [
@@ -46,6 +56,10 @@ class Company extends Model
     }
 
 
+    /**
+     * @param string|null $locale
+     * @return Model|HasMany|object|null
+     */
     public function language(string $locale = null)
     {
         if (null === $locale) {
@@ -53,21 +67,49 @@ class Company extends Model
         }
         return $this->languages()->where('language_id', $locale)->first();
     }
+
+    /**
+     * @return MorphMany
+     */
     public function files(): MorphMany
     {
         return $this->morphMany(File::class, 'fileable')->where(['type' => File::FILE_DEFAULT]);
     }
 
+    /**
+     * @return MorphOne
+     */
     public function file(): MorphOne
     {
         return $this->morphOne(File::class, 'fileable')->where(['type' => File::FILE_DEFAULT]);
     }
 
+    /**
+     * @return MorphOne
+     */
     public function mainFile(): MorphOne
     {
         return $this->morphOne(File::class, 'fileable')->where(['type' => File::FILE_MAIN]);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function documents(){
         return $this->belongsToMany(Document::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function sliders(){
+        return $this->belongsToMany(Slider::class, 'company_sliders');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function pages(){
+        return $this->belongsToMany(Page::class, 'company_pages');
     }
 }

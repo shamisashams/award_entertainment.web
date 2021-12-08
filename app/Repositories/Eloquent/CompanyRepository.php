@@ -3,8 +3,10 @@
 namespace App\Repositories\Eloquent;
 
 use App\Http\Requests\Admin\CompanyRequest;
+use App\Http\Requests\Admin\GalleryRequest;
 use App\Models\Company;
 use App\Models\File;
+use App\Models\Gallery;
 use App\Repositories\CompanyRepositoryInterface;
 use App\Repositories\Eloquent\Base\BaseRepository;
 
@@ -45,6 +47,12 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
                     'content_description' => $attributes['content_description'][$language['id']],
                     'content_description_2' => $attributes['content_description_2'][$language['id']],
                     'content_description_3' => $attributes['content_description_3'][$language['id']],
+                    'country' => $attributes['country'][$language['id']],
+                    'address' => $attributes['address'][$language['id']],
+                    'phone' => $attributes['phone'][$language['id']],
+                    'email' => $attributes['email'][$language['id']],
+                    'facebook' => $attributes['facebook'][$language['id']],
+                    'linkedin' => $attributes['linkedin'][$language['id']],
 
                 ];
             }
@@ -70,6 +78,7 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
 
             ];
 
+
             $this->model = parent::update($id, $attributes);
             foreach ($data['languages'] as $language) {
                 if (null !== $this->model->language($language['id'])) {
@@ -82,6 +91,12 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
                         'content_description' => $data['content_description'][$language['id']],
                         'content_description_2' => $data['content_description_2'][$language['id']],
                         'content_description_3' => $data['content_description_3'][$language['id']],
+                        'country' => $data['country'][$language['id']],
+                        'address' => $data['address'][$language['id']],
+                        'phone' => $data['phone'][$language['id']],
+                        'email' => $data['email'][$language['id']],
+                        'facebook' => $data['facebook'][$language['id']],
+                        'linkedin' => $data['linkedin'][$language['id']],
                     ]);
                 }else{
                     $this->model->languages()->create([
@@ -94,6 +109,12 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
                         'content_description' => $data['content_description'][$language['id']],
                         'content_description_2' => $data['content_description_2'][$language['id']],
                         'content_description_3' => $data['content_description_3'][$language['id']],
+                        'country' => $data['country'][$language['id']],
+                        'address' => $data['address'][$language['id']],
+                        'phone' => $data['phone'][$language['id']],
+                        'email' => $data['email'][$language['id']],
+                        'facebook' => $data['facebook'][$language['id']],
+                        'linkedin' => $data['linkedin'][$language['id']],
                     ]);
                 }
             }
@@ -162,6 +183,7 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
 
         return $this->model;
     }
+
 
 
 }

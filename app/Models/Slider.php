@@ -111,4 +111,28 @@ class Slider extends Model
     {
         return $this->morphOne(File::class, 'fileable');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function company(){
+        return $this->belongsToMany(Company::class, 'company_sliders');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function companies()
+    {
+        return $this->HasMany(CompanySlider::class);
+    }
+
+    /**
+     * @param string $companyId
+     * @return Model|HasMany|object|null
+     */
+    public function companyCheck(string $companyId)
+    {
+        return $this->companies()->where('company_id', $companyId)->first();
+    }
 }
