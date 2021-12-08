@@ -60,10 +60,13 @@
                     <img src="{{asset($company->mainFile->path.'/'.$company->mainFile->title)}}"
                          alt="{{$company->mainFile->title}}"/>
                 @endif
-                <div class="description">
-                    {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
-
-                </div>
+                    <div class="description">
+                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
+                        <button class='link'
+                                onclick="window.location.href='{{locale_route('client.company.show', $company->id)}}'"
+                            {{--                                href="{{locale_route('client.company.show', $company->id)}}"--}}
+                        >Visit Page</button>
+                    </div>
             </a>
         @endforeach
 
