@@ -7,12 +7,13 @@
 @endsection
 @section("body_class", "vertical")
 @section("our_blogs")
-    <div class="the_page_title m5" id="blog_title">@lang("client.our_blogs_go_back")</div>
+    <!-- <div class="the_page_title m5" id="blog_title">@lang("client.our_blogs_go_back")</div> -->
 
 @endsection
 @section('wrapper')
 
     <section class="gallery_page blogs" id="blog_page">
+    <div class="the_page_title">RAY</div>
         <div class="blog_page_grid">
             @foreach($blogs as $blog)
             <div class="blog_box flex">

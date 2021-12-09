@@ -6,11 +6,12 @@
 @endsection
 @section("body_class", "vertical")
 @section("our_blogs")
-    <div class="the_page_title m5 clicked" id="gallery_title">@lang("client.our_galleries_go_back")</div>
+    <!-- <div class="the_page_title m5 clicked" id="gallery_title">@lang("client.our_galleries_go_back")</div> -->
 @endsection
 @section('wrapper')
     <section class="gallery_page detail">
         <section class="gallery_detail gallery">
+        <div class="the_page_title clicked" id="gallery_title" style="cursor: pointer;">@lang("client.our_galleries_go_back")</div>
             <!-- return btn - only  on home page -->
         {{--            <a href="{{ route('client.gallery.index') }}">--}}
         {{--                <button class="flex go_back_btn">--}}

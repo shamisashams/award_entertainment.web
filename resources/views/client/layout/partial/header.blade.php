@@ -1,6 +1,6 @@
 <div class="header flex @yield("body_class")">
     @yield("our_blogs")
-{{--    <div class="the_page_title" id="gallery_title">Our Galleries</div>--}}
+<!-- {{--    <div class="the_page_title" id="gallery_title">Our Galleries</div>--}} -->
 
     {{--    @yield("miniheader")--}}
     <div class="logo flex ">
