@@ -88,6 +88,8 @@ Route::prefix('{locale?}')
         Route::get('/blog', [BlogControllerClient::class, 'index'])->name('client.blog.index');
         Route::get('/gallery', [GalleryControllerClient::class, 'index'])->name('client.gallery.index');
         Route::get('/gallery/{gallery}', [GalleryControllerClient::class, 'show'])->name('client.gallery.show');
+        Route::get('/company/{company}', [\App\Http\Controllers\Client\CompanyController::class, 'index'])->name('client.company.show');
+        Route::get('/company/about/{company}', [\App\Http\Controllers\Client\CompanyController::class, 'about'])->name('client.company.about');
         Route::get("about", [AboutController::class, 'index'])->name("about");
         Route::post( '/contact-us', [ContactController::class, 'index'])->name('contact.index');
 

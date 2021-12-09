@@ -20,6 +20,36 @@
                     <input name="old-images[]" id="old_images" hidden disabled value="{{$page->files}}">
                     <h4 class="card-title">{{ __('admin.page-update') }}</h4>
                     {!! Form::model($page,['url' => $url, 'method' => $method,'files' => true]) !!}
+                    <div class="input-field col s12">
+                        @if(in_array($page->id, $firstTwoRecordsId))
+                            <select class="select2-customize-result browser-default"
+                                    name="key">
+                                <option {{$page->key =='about' ? 'selected' : 'disabled' }} value="about" >About page</option>
+                                <option {{$page->key =='home' ? 'selected' : 'disabled' }} value="home">Home page</option>
+                            </select>
+                        @else
+                            <select class="select2-customize-result browser-default"
+                                    name="key">
+                                <option {{$page->key =='about' ? 'selected' : '' }} value="about">About page</option>
+                                <option {{$page->key =='home' ? 'selected' : '' }} value="home">Home page</option>
+                            </select>
+                        @endif
+                    </div>
+                    <div class="input-field col s12">
+
+                        <select class="select2-customize-result browser-default"
+                                multiple name="companies[]">
+                            <option value="" disabled>Choose your option</option>
+                            @foreach($companies as $key => $company)
+                                <option value="{{ $company->id }}"
+                                    {{ in_array($company->id, $selectedCompanies) ? "selected": ""}}
+                                >
+                                    {!! $company->language()->content_title !!}
+                                </option>
+
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="row">
                         <ul class="tabs">
                             @foreach($languages as $key => $language)
@@ -62,23 +92,23 @@
                                 {{--                                    @enderror--}}
                                 {{--                                </div>--}}
 
-{{--                                <div class="input-field">--}}
-{{--                                    <h5 for="description">@lang('admin.description')</h5>--}}
-{{--                                    <textarea class="form-control" id="description-{{$locale}}"--}}
-{{--                                              name="{{$locale}}[description]'">--}}
-{{--                                                {!! $page->translate($locale)->description ?? '' !!}--}}
-{{--                                            </textarea>--}}
-{{--                                    @error($locale.'.description')--}}
-{{--                                    <small class="errorTxt4">--}}
-{{--                                        <div class="error">--}}
-{{--                                            {{$message}}--}}
-{{--                                        </div>--}}
-{{--                                    </small>--}}
-{{--                                    @enderror--}}
-{{--                                </div>--}}
+                                {{--                                <div class="input-field">--}}
+                                {{--                                    <h5 for="description">@lang('admin.description')</h5>--}}
+                                {{--                                    <textarea class="form-control" id="description-{{$locale}}"--}}
+                                {{--                                              name="{{$locale}}[description]'">--}}
+                                {{--                                                {!! $page->translate($locale)->description ?? '' !!}--}}
+                                {{--                                            </textarea>--}}
+                                {{--                                    @error($locale.'.description')--}}
+                                {{--                                    <small class="errorTxt4">--}}
+                                {{--                                        <div class="error">--}}
+                                {{--                                            {{$message}}--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </small>--}}
+                                {{--                                    @enderror--}}
+                                {{--                                </div>--}}
 
                                 <div class="input-field ">
-                                    {!! Form::textarea('content_1['.$key.']',$page->language($language->id) !== null ? $page->language($language->id)->content_1 : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('content_1.*') ? '' : 'valid'),'id'=>'content-1-'.$language->locale]) !!}
+                                    {!! Form::textarea('content_1['.$key.']',$page->language($language->id) !== null ? $page->language($language->id)->content_1 : "",['class' => 'validate materialize-textarea '.($errors->has('content_1.*') ? '' : 'valid'),'id'=>'content-1-'.$language->locale]) !!}
                                     {{--                                    {!! Form::label('content['.$key.']',__('admin.content')) !!}--}}
 
                                     @error('content_1.*')
@@ -91,8 +121,8 @@
                                 </div>
 
                                 <div class="input-field ">
-                                    {!! Form::textarea('content_2['.$key.']',$page->language($language->id) !== null ? $page->language($language->id)->content_2 : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('content_2.*') ? '' : 'valid'),'id'=>'content-2-'.$language->locale]) !!}
-                                                                        {!! Form::label('content_2['.$key.']',__('admin.content_2')) !!}
+                                    {!! Form::textarea('content_2['.$key.']',$page->language($language->id) !== null ? $page->language($language->id)->content_2 : "",['class' => 'validate materialize-textarea '.($errors->has('content_2.*') ? '' : 'valid'),'id'=>'content-2-'.$language->locale]) !!}
+                                    {!! Form::label('content_2['.$key.']',__('admin.content_2')) !!}
 
                                     @error('content_2.*')
                                     <small class="errorTxt4">
@@ -151,6 +181,7 @@
             filebrowserUploadMethod: 'form'
         });
     </script>
+
 @endsection
 
 {{-- vendor script --}}

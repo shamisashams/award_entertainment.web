@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\Company;
 use App\Models\Language;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
 /**
@@ -29,14 +30,26 @@ class LanguageComposer
      *
      * @return void
      */
+
     public function compose(View $view)
     {
+        $currentRoute = Route::current();
+        $params = $currentRoute->parameters();
+
+
 
         $defaultLanguage = Language::where('default', true)->first();
         $activeLanguage = Language::where('locale', $this->languageSlug())->first();
-        $companies = Company::with(["files", "availableLanguage", "documents"=>function($query){
-            $query->with("availableLanguage")->where("status", 1);
-        }, "mainFile"])->where("status", 1)->get();
+//        $companies = Company::with(["files", "availableLanguage", "documents"=>function($query){
+//            $query->with("availableLanguage")->where("status", 1);
+//        }, "mainFile"])->where("status", 1)->get();
+        $companies = Company::with(["availableLanguage", "mainFile"])->where("status", 1)->get();
+        $currentCompany = null;
+        if ($params['company'] ?? null){
+            $currentCompany = $companies->filter(function($item) use ($params) {
+                return $item->id == $params['company'];
+            })->first();
+        }
 
 //        $categories = Category::where('status',true)->get();
 
@@ -61,6 +74,7 @@ class LanguageComposer
         $gtwitter = "";
         $gabout = "";
         $gcity = "";
+        $glinkedin = "";
 
 
         $settings = Setting::get();
@@ -93,6 +107,9 @@ class LanguageComposer
                 case "city":
                     $gcity = $setting;
                     break;
+                case "linkedin":
+                    $glinkedin = $setting;
+                    break;
             }
         }
 
@@ -107,7 +124,9 @@ class LanguageComposer
             ->with('gphone',$gphone)
             ->with("gcity",$gcity)
             ->with("gabout", $gabout)
+            ->with("glinkedin", $glinkedin)
             ->with("comp", $companies)
+            ->with("currentCompany", $currentCompany)
 //            ->with("companies", $companies)
             ->with('defaultLanguage', $defaultLanguage ? $defaultLanguage->id : null);
     }

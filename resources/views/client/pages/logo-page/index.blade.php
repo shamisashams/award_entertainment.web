@@ -1,22 +1,25 @@
 @extends('client.layout.site')
 @section('subhead')
-    <title>@lang('client.home_meta_title')</title>
+    <title>{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_title ?? __('client.home_meta_title') : __('client.home_meta_title')}}</title>
     <meta name="description"
-          content="@lang('client.home_meta_description')">
+          content="{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description ?? __('client.home_meta_description') : __('client.home_meta_description')}}">
 @endsection
-@section('wrapper')
 
+@section('wrapper')
     <div class="fixed_frame">
         <div class="outer_wrapper main_pages" id="container" data-js="main-wrapper">
-            <div class="wrapper">
+            <div class="wrapper wrapper_company">
                 <section class="section one" id="first_section">
                     <div class="content flex">
                         <div class="left left_side">
                             <div class="main_titles">
-                                @lang('client.we_create_great_place')
+                                {{--                                @dd($company)--}}
+                                {{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_1 : ""}}
                             </div>
                             <div class="paragraph">
-                                @lang("client.home_page_text")
+                                {!! count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description : "" !!}
+
+                                {{--                                @lang("client.home_page_text")--}}
                             </div>
                             <div class="numbers flex">
                                 <div class="flex">
@@ -42,7 +45,9 @@
                         <div class="right right_side">
                             <div class="sec1_img">
                                 <div class="sec1_img_slider">
-                                    @foreach($sliders as $slider)
+                                    @foreach($company->sliders as $slider)
+                                        {{--                                        @dd($slider)--}}
+
                                         @if(count($slider->files)>0)
                                             <div class="slider_item">
                                                 <img
@@ -69,160 +74,74 @@
                             <div class="main_titles">
                                 @lang("client.our_gallery")
                                 <div class="sub_title">
-                                    @lang("client.gallery_desc")
+                                    {{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_2 : ""}}
                                 </div>
                             </div>
                             <div class="flex quote">
-                                <div class="quotes"><img src="img/sec2/2.png" alt=""/></div>
+                                <div class="quotes"><img src="/img/sec2/2.png" alt=""/></div>
                                 <div class="paragraph">
-                                    @lang("client.gallery_text")
+                                    {!! count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_2 : "" !!}
                                 </div>
                             </div>
-                            <a href="{{ locale_route("client.gallery.index") }}">
-                                <div class="view_all">
-                                    <div class="paragraph">
-                                        @lang("client.view_all_gallery")
-                                        <span class="arrow"
-                                        ><img src="/img/icons/arrows/1.png" alt=""
-                                            /></span>
-                                    </div>
-                                </div>
-                            </a>
                         </div>
 
                         <div class="right right_side">
 
-                            @if(count($page->files)>0)
+                            @if(count($company->pages)>0 && count($company->pages[0]->files)>0)
                                 <div class="circle">
                                     <div class="img">
-                                        <img src="{{ asset($page->files[0]->path."/".$page->files[0]->title) }}"
-                                             alt="{{$page->files[0]->title}}"/>
+                                        <img
+                                            src="{{ asset($company->pages[0]->files[0]->path."/".$company->pages[0]->files[0]->title) }}"
+                                            alt="{{$company->pages[0]->files[0]->title}}"/>
                                     </div>
                                 </div>
                             @endif
                             <div class="scroll_overflow">
                                 <div class="gallery_grid_sec2">
-                                    @foreach($galleries as $gallery)
-                                        <a href="{{ locale_route('client.gallery.show', $gallery->id) }}"
-                                           class="{{in_array($loop->index, [0,7])  ? "large" : ""}}">
-                                            <div class="gallery_box" id="{{ $gallery->id }}">
-                                                @if($gallery->mainFile)
-                                                    <div class="img_overlay">
-                                                        <img id="img_gallery_{{ $gallery->id }}"
-                                                             src="{{ asset($gallery->mainFile->path."/".$gallery->mainFile->title) }}"
-                                                             alt=""/>
-                                                    </div>
-                                                @endif
-                                                <div class="caption">
-                                                    @if(count($gallery->availableLanguage) >0)
-                                                        {{ $gallery->availableLanguage[0]->title }}
-                                                        <br/>
-                                                        <span>{{ $gallery->availableLanguage[0]->short_description }}</span>
-                                                    @endif
+                                    {{--                                    @foreach($galleries as $gallery)--}}
+                                    {{--                                        <a href="{{ locale_route('client.gallery.show', $gallery->id) }}"--}}
+                                    {{--                                           class="{{in_array($loop->index, [0,7])  ? "large" : ""}}">--}}
+                                    {{--                                            <div class="gallery_box" id="{{ $gallery->id }}">--}}
+                                    {{--                                                @if($gallery->mainFile)--}}
+                                    {{--                                                    <div class="img_overlay">--}}
+                                    {{--                                                        <img id="img_gallery_{{ $gallery->id }}"--}}
+                                    {{--                                                             src="{{ asset($gallery->mainFile->path."/".$gallery->mainFile->title) }}"--}}
+                                    {{--                                                             alt=""/>--}}
+                                    {{--                                                    </div>--}}
+                                    {{--                                                @endif--}}
+                                    {{--                                                <div class="caption">--}}
+                                    {{--                                                    @if(count($gallery->availableLanguage) >0)--}}
+                                    {{--                                                        {{ $gallery->availableLanguage[0]->title }}--}}
+                                    {{--                                                        <br/>--}}
+                                    {{--                                                        <span>{{ $gallery->availableLanguage[0]->short_description }}</span>--}}
+                                    {{--                                                    @endif--}}
 
-                                                </div>
-                                            </div>
-                                            <p hidden
-                                               id="content_1_gallery_{{ $gallery->id }}">{{ count($gallery->availableLanguage) >0? $gallery->availableLanguage[0]->content : "" }}</p>
-                                            <p hidden
-                                               id="content_2_gallery_{{ $gallery->id }}">{{count($gallery->availableLanguage) >0? $gallery->availableLanguage[0]->content_2 : "" }}</p>
-                                            <input type="text" hidden value="{{ $gallery->files }}" name=""
-                                                   id="images_gallery_{{ $gallery->id }}">
-                                            <input type="text" hidden
-                                                   value=" {{ count($gallery->availableLanguage) >0?  $gallery->availableLanguage[0]->title : "" }}"
-                                                   name="" id="title_gallery_{{ $gallery->id }}">
-                                            <input type="text" hidden
-                                                   value="{{ $gallery->video_link }}"
-                                                   name="" id="video_gallery_{{ $gallery->id }}">
+                                    {{--                                                </div>--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                            <p hidden--}}
+                                    {{--                                               id="content_1_gallery_{{ $gallery->id }}">{{ count($gallery->availableLanguage) >0? $gallery->availableLanguage[0]->content : "" }}</p>--}}
+                                    {{--                                            <p hidden--}}
+                                    {{--                                               id="content_2_gallery_{{ $gallery->id }}">{{count($gallery->availableLanguage) >0? $gallery->availableLanguage[0]->content_2 : "" }}</p>--}}
+                                    {{--                                            <input type="text" hidden value="{{ $gallery->files }}" name=""--}}
+                                    {{--                                                   id="images_gallery_{{ $gallery->id }}">--}}
+                                    {{--                                            <input type="text" hidden--}}
+                                    {{--                                                   value=" {{ count($gallery->availableLanguage) >0?  $gallery->availableLanguage[0]->title : "" }}"--}}
+                                    {{--                                                   name="" id="title_gallery_{{ $gallery->id }}">--}}
+                                    {{--                                            <input type="text" hidden--}}
+                                    {{--                                                   value="{{ $gallery->video_link }}"--}}
+                                    {{--                                                   name="" id="video_gallery_{{ $gallery->id }}">--}}
 
 
-                                        </a>
-                                    @endforeach
+                                    {{--                                        </a>--}}
+                                    {{--                                    @endforeach--}}
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section three other_sections" id="blog_section">
-                    <div class="content flex">
-                        <div class="left left_side">
-                            <div class="main_titles">
-                                @lang("client.our_blog")
-                                <div class="sub_title">
-                                    @lang("client.blog_desc")
-
-                                </div>
-                            </div>
-                            <div class="flex quote">
-                                <div class="quotes"><img src="img/sec2/2.png" alt=""/></div>
-                                <div class="paragraph">
-                                    @lang("client.blog_text")
-                                </div>
-                            </div>
-                            <a href="{{ locale_route('client.blog.index') }}">
-                                <div class="view_all">
-                                    <div class="paragraph">
-                                        @lang("client.view_all_blogs")
-                                        <span class="arrow"
-                                        ><img src="img/icons/arrows/1.png" alt=""
-                                            /></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="right right_side">
-                            <div class="scroll_overflow">
-                                <div class="blog_grid_sec3">
-                                    @foreach($blogs as $blog)
-                                        <div class="blog_box flex">
-                                            @if(count($blog->files)>0)
-                                                <div class="img">
-                                                    <img id="img_blog_{{ $blog->id }}"
-                                                         src="{{ asset($blog->files[0]->path."/".$blog->files[0]->title) }}"
-                                                         alt="{{ $blog->files[0]->title }}"/>
-                                                </div>
-                                            @endif
-                                            <div class="context">
-                                                {{--                                        @if(count($blog->languages)>0)--}}
-                                                <div class="title" id="title_blog_{{ $blog->id }}">
-                                                    {{--                                                    {{ $blog->language(app()->getLocale())->title ? $blog->language(app()->getLocale())->title : $blog->language()->title}}--}}
-                                                    {{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->title : "" }}
-                                                </div>
-                                                {{--                                            @endif--}}
-                                                <div class="flex info">
-                                                    <div class="flex">
-                                                        <img src="/img/icons/blog/1.png" alt=""/>
-                                                        <div
-                                                            id="location_blog_{{ $blog->id }}">{{ count($blog->availableLanguage) >0 ? ucfirst($blog->availableLanguage[0]->city) : "" }}
-                                                            , {{ count($blog->availableLanguage) >0 ? ucfirst($blog->availableLanguage[0]->country) : "" }}</div>
-                                                    </div>
-                                                    <div class="flex">
-                                                        <img src="/img/icons/blog/2.png" alt=""/>
-                                                        <div
-                                                            id="date_blog_{{ $blog->id }}">{{ $blog->created_at->format('d/m/Y') }}</div>
-                                                    </div>
-                                                </div>
-                                                {{--                                                @if(count($blog->languages)>0)--}}
-                                                <div class="para">
-                                                    {{--                                                @dd($blog->languages[0]->description)--}}
-                                                    {{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->short_description : "" }}
-                                                </div>
-                                                {{--                                                @endif--}}
-                                                <a href="#">
-                                                    <div class="flex view_more open_gallery_details"
-                                                         id="{{ $blog->id }}">
-                                                        <div>@lang("client.view_more_blog")</div>
-                                                        <img src="/img/icons/blog/3.png" alt=""/>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                    @foreach($company->files as $file)
+                                        <div class="gallery_box">
+                                            <div class="img_overlay">
+                                                <img src="{{ asset($file->path."/".$file->title) }}"
+                                                     alt="{{$file->title}}"/></div>
                                         </div>
-                                        <div hidden
-                                             id="content_blog_{{ $blog->id }}">{{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->content : "" }}</div>
                                     @endforeach
-
                                 </div>
                             </div>
                         </div>
@@ -236,18 +155,18 @@
                                 @lang("client.about_us")
 
                                 <div class="sub_title">
-                                    @lang("client.about_us_desc")
+                                    {{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_3 : ""}}
 
                                 </div>
                             </div>
                             <div class="flex quote">
-                                <div class="quotes"><img src="img/sec2/2.png" alt=""/></div>
+                                <div class="quotes"><img src="/img/sec2/2.png" alt=""/></div>
                                 <div class="paragraph">
-                                    @lang("client.about_us_text")
+                                    {!! count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_3 : "" !!}
 
                                 </div>
                             </div>
-                            <a href="{{ locale_route("about") }}">
+                            <a href="{{ locale_route("client.company.about", $company->id) }}">
                                 <div class="view_all">
                                     <div class="paragraph">
                                         @lang("client.about_us_view_all")
@@ -261,34 +180,43 @@
                         <div class="right right_side">
                             <div class="about_section">
                                 <div class="flex">
-                                    @if(count($page->files)>1)
+                                    @if(count($company->pages)>0 && count($company->pages[0]->files)>1)
                                         <div class="img">
-                                            <img src="{{ asset($page->files[1]->path."/".$page->files[1]->title) }}"
-                                                 alt="{{$page->files[1]->title}}"/>
+                                            <img
+                                                src="{{ asset($company->pages[0]->files[1]->path."/".$company->pages[0]->files[1]->title) }}"
+                                                alt="{{$company->pages[0]->files[1]->title}}"/>
                                         </div>
                                     @endif
-                                    <div class="text">
-                                        <div class="title">
-                                            {{ count($page->availableLanguage) >0 ? $page->availableLanguage[0]->title : "" }}
+                                    @if(count($company->pages)>0)
+
+                                        <div class="text">
+                                            <div class="title">
+                                                {{ count($company->pages[0]->availableLanguage) >0 ? $company->pages[0]->availableLanguage[0]->title : "" }}
+                                            </div>
+                                            <div class="paragraph">
+                                                {!! count($company->pages[0]->availableLanguage) >0 ? $company->pages[0]->availableLanguage[0]->content_1 : "" !!}
+                                            </div>
                                         </div>
-                                        <div class="paragraph">
-                                            {!! count($page->availableLanguage) >0 ? $page->availableLanguage[0]->content_1 : "" !!}
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="flex two">
-                                    <div class="text">
-                                        <div class="paragraph">
-                                            {!! count($page->availableLanguage) >0 ? $page->availableLanguage[0]->content_2 : "" !!}
+                                    @if(count($company->pages)>0)
 
+                                        <div class="text">
+                                            <div class="paragraph">
+                                                {!! count($company->pages[0]->availableLanguage) >0 ? $company->pages[0]->availableLanguage[0]->content_2 : "" !!}
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    @if(count($page->files)>2)
+                                    @endif
+                                    @if(count($company->pages)>0 && count($company->pages[0]->files)>2)
                                         <div class="img">
-                                            <img src="{{ asset($page->files[2]->path."/".$page->files[2]->title) }}"
-                                                 alt="{{$page->files[2]->title}}"/>
+                                            <img
+                                                src="{{ asset($company->pages[0]->files[2]->path."/".$company->pages[0]->files[2]->title) }}"
+                                                alt="{{$company->pages[0]->files[2]->title}}"/>
                                         </div>
-                                    @endif                                </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -339,37 +267,27 @@
 
                                 <div class="contact_info flex">
                                     <div class="column" style="margin-right: 5px">
-                                        @if(count($gcity->availableLanguage) > 0)
-                                            <div class="title">{{ $gcity->availableLanguage[0]->value }}</div>
-                                        @endif
-                                        <div class="flex">
-                                            <div style="margin-right: 16px">
-                                                <strong style="color: #235164; font-size: 12px"
-                                                >@lang("client.address")</strong
-                                                >
-                                                @if(count($gaddress->availableLanguage) > 0)
-                                                    <div class="para">
-                                                        {{ $gaddress->availableLanguage[0]->value }}
-                                                    </div>
-                                                @endif
-                                            </div>
-                                            <div style="margin-right: 16px">
-                                                <strong style="color: #235164; font-size: 12px"
-                                                >@lang("client.phone_number")</strong
-                                                >
-                                                @if(count($gphone->availableLanguage) > 0)
-                                                    <div class="para">{{ $gphone->availableLanguage[0]->value }}</div>
-                                                @endif
-                                            </div>
-                                            <div>
-                                                <strong style="color: #235164; font-size: 12px"
-                                                >@lang("client.email_address")</strong
-                                                >
-                                                @if(count($gemail->availableLanguage) > 0)
-                                                    <div class="para"><a href="mailto:{{ $gemail->availableLanguage[0]->value }}">{{ $gemail->availableLanguage[0]->value }}</a></div>
-                                                @endif
-                                            </div>
-
+                                        <div
+                                            class="title">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->country : ""}}</div>
+                                        <div style="margin-bottom: 10px">
+                                            <strong style="color: #235164; font-size: 12px"
+                                            >@lang("client.address")</strong
+                                            >
+                                                <div class="para">
+                                                    {{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->address : ""}}
+                                                </div>
+                                        </div>
+                                        <div style="margin-bottom: 10px">
+                                            <strong style="color: #235164; font-size: 12px"
+                                            >@lang("client.phone_number")</strong
+                                            >
+                                                <div class="para">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->phone : ""}}</div>
+                                        </div>
+                                        <div>
+                                            <strong style="color: #235164; font-size: 12px"
+                                            >@lang("client.email_address")</strong
+                                            >
+                                                <div class="para">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->email : ""}}</div>
                                         </div>
                                     </div>
                                     {{--                                    <div class="column" style="margin-right: 5px">--}}
@@ -487,8 +405,8 @@
                         {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
                         <button class='link'
                                 onclick="window.location.href='{{locale_route('client.company.show', $company->id)}}'"
-                            {{--                                href="{{locale_route('client.company.show', $company->id)}}"--}}
-                        >Visit Page</button>
+                        >Visit Page
+                        </button>
                     </div>
                 </a>
             @endforeach
@@ -527,69 +445,73 @@
             </svg>
         </button>
     </div>
-    {{--    @foreach($comp as $company)--}}
+    @foreach($comp as $company)
 
-    {{--        <div class="branch_popup">--}}
-    {{--            <button class="close_branch_popup"><img src="img/icons/other/close2.png" alt=""></button>--}}
-    {{--            <div class="container">--}}
+        <div class="branch_popup">
+            <button class="close_branch_popup"><img src="img/icons/other/close2.png" alt=""></button>
+            <div class="container">
 
-    {{--                <div class="bp_left">--}}
-    {{--                    <div class="main_title"--}}
-    {{--                         style="color: #ED1C24;">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_title : ""}}</div>--}}
-    {{--                    <div class="block">--}}
-    {{--                        <div class="title">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_1 : ""}}</div>--}}
-    {{--                        <p>--}}
-    {{--                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description : "" !!}--}}
-    {{--                        </p>--}}
+                <div class="bp_left">
+                    <div class="main_title"
+                         style="color: #ED1C24;">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_title : ""}}</div>
+                    <div class="block">
+                        <div
+                            class="title">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_1 : ""}}</div>
+                        <p>
+                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description : "" !!}
+                        </p>
 
-    {{--                        <div class="title" style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_2 : ""}}</div>--}}
-    {{--                        <p>--}}
-    {{--                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_2 : "" !!}--}}
-    {{--                        </p>--}}
+                        <div class="title"
+                             style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_2 : ""}}</div>
+                        <p>
+                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_2 : "" !!}
+                        </p>
 
-    {{--                        <div class="title" style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_3 : ""}}</div>--}}
-    {{--                        <p>--}}
-    {{--                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_3 : "" !!}--}}
-    {{--                        </p>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--                <div class="bp_right">--}}
+                        <div class="title"
+                             style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_3 : ""}}</div>
+                        <p>
+                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_3 : "" !!}
+                        </p>
+                    </div>
+                </div>
+                <div class="bp_right">
 
-    {{--                    <div class="title">@lang('client.companies_gallery')</div>--}}
-    {{--                    <div class="img_row">--}}
-    {{--                        @foreach($company->files as $file)--}}
-    {{--                            <div class="gallery_box">--}}
-    {{--                                <div class="img_overlay">--}}
-    {{--                                    <img src="{{ asset($file->path."/".$file->title) }}"--}}
-    {{--                                         alt="{{$file->title}}"/></div>--}}
-    {{--                                --}}{{--                                <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>--}}
-    {{--                            </div>--}}
-    {{--                        @endforeach--}}
-    {{--                    </div>--}}
-    {{--                    <div class="title">@lang('client.download_document')</div>--}}
-    {{--                    <div class="flex">--}}
-    {{--                        @foreach($company->documents as $document)--}}
-    {{--                            @if($document->pdf)--}}
-    {{--                            <div class="document">--}}
-    {{--                                <img src="/img/icons/other/pdf.png" alt="pdf_icon">--}}
-    {{--                                <p>{{ count($document->availableLanguage) >0 ? $document->availableLanguage[0]->title : "" }}</p>--}}
-    {{--                                <a href="/{{$document->pdf->path.'/'.$document->pdf->title}}" target="_blank">@lang('client.download_pdf')</a>--}}
-    {{--                            </div>--}}
-    {{--                            @endif--}}
-    {{--                            @if($document->pdf)--}}
-    {{--                                <a target="_blank" href="/{{$document->pdf->path.'/'.$document->pdf->title}}">--}}
-    {{--                                    <div class="dl_pdf flex">--}}
-    {{--                                        <img src="/client/img/icons/other/pdf.png" alt="">--}}
-    {{--                                        <div>@lang('client.download_pdf')</div>--}}
-    {{--                                    </div>--}}
-    {{--                                </a>--}}
-    {{--                            @endif--}}
-    {{--                        @endforeach--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    @endforeach--}}
+                    <div class="title">@lang('client.companies_gallery')</div>
+                    <div class="img_row">
+                        @foreach($company->files as $file)
+                            <div class="gallery_box">
+                                <div class="img_overlay">
+                                    <img src="{{ asset($file->path."/".$file->title) }}"
+                                         alt="{{$file->title}}"/></div>
+                                {{--                                <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>--}}
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="title">@lang('client.download_document')</div>
+                    <div class="flex">
+                        @foreach($company->documents as $document)
+                            @if($document->pdf)
+                                <div class="document">
+                                    <img src="/img/icons/other/pdf.png" alt="pdf_icon">
+                                    <p>{{ count($document->availableLanguage) >0 ? $document->availableLanguage[0]->title : "" }}</p>
+                                    <a href="/{{$document->pdf->path.'/'.$document->pdf->title}}"
+                                       target="_blank">@lang('client.download_pdf')</a>
+                                </div>
+                            @endif
+                            {{--                            @if($document->pdf)--}}
+                            {{--                                <a target="_blank" href="/{{$document->pdf->path.'/'.$document->pdf->title}}">--}}
+                            {{--                                    <div class="dl_pdf flex">--}}
+                            {{--                                        <img src="/client/img/icons/other/pdf.png" alt="">--}}
+                            {{--                                        <div>@lang('client.download_pdf')</div>--}}
+                            {{--                                    </div>--}}
+                            {{--                                </a>--}}
+                            {{--                            @endif--}}
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
 
 @endsection

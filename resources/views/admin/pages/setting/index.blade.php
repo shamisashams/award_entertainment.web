@@ -19,7 +19,7 @@
                                     <thead>
                                     <tr>
                                         <th>@lang('admin.id')</th>
-                                        <th>@lang('admin.status')</th>
+                                        <th>@lang('admin.key')</th>
                                         <th>@lang('admin.value')</th>
                                         <th>@lang('admin.actions')</th>
                                     </tr>

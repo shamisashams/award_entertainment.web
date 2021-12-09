@@ -20,4 +20,10 @@ class CompanyLanguage extends Model
         "content_sub_title_3",
         "content_description_2",
         "content_description_3",
+        "country",
+        "address",
+        "phone",
+        "email",
+        "facebook",
+        "linkedin",
     ];}

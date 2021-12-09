@@ -33,14 +33,29 @@
                             @enderror
                         </div>
                         <div class="input-field col s12">
-                            <select class="select2-customize-result browser-default" multiple="multiple" name="type" >
+                            <select class="select2-customize-result browser-default" multiple="multiple" name="type">
                                 <option value="" disabled>Choose your option</option>
-                                    <option value="{{ $type }}" {{ $slider->type ? "selected" : "" }}>
-                                        {{ucfirst($type)}}
-                                    </option>
+                                <option value="{{ $type }}" {{ $slider->type ? "selected" : "" }}>
+                                    {{ucfirst($type)}}
+                                </option>
 
                             </select>
 
+                        </div>
+                        <div class="input-field col s12">
+
+                            <select class="select2-customize-result browser-default"
+                                    multiple name="companies[]">
+                                <option value="" disabled>Choose your option</option>
+                                @foreach($companies as $key => $company)
+                                    <option value="{{ $company->id }}"
+                                        {{ in_array($company->id, $selectedCompanies) ? "selected": ""}}
+                                    >
+                                        {!! $company->language()->content_title !!}
+                                    </option>
+
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col s12 mb-2">
                             <label>
@@ -71,8 +86,8 @@
                                 </div>
                                 <div class="input-field ">
                                             <textarea
-                                                    name="description[{{$key}}]"
-                                                    class="materialize-textarea validate {{ $errors->has('description.*') ? '' : 'valid'}}">
+                                                name="description[{{$key}}]"
+                                                class="materialize-textarea validate {{ $errors->has('description.*') ? '' : 'valid'}}">
                                                 {!! $slider->language($language->id) !== null ? $slider->language($language->id)->description : "" !!}
                                             </textarea>
                                     <label for="description['{{$key}}']">{{__('admin.description')}}</label>

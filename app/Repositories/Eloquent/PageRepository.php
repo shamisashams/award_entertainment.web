@@ -24,23 +24,28 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface
             DB::connection()->beginTransaction();
 
             $data = [
-//                'status' => $attributes['status']
+//                'status' => $attributes['status'],
+                'key' => $attributes['key']
             ];
             $this->model = parent::create($data);
 
             $pageLanguages = [];
+//            dd($attributes);
 
             foreach ($attributes['languages'] as $language) {
                 $pageLanguages [] = [
                     'language_id' => $language['id'],
                     'title' => $attributes['title'][$language['id']],
-                    '$content_1' => $attributes['$content_1'][$language['id']],
-                    '$content_2' => $attributes['$content_2'][$language['id']],
+                    'content_1' => $attributes['content_1'][$language['id']],
+                    'content_2' => $attributes['content_2'][$language['id']],
 
                 ];
             }
 
             $this->model->languages()->createMany($pageLanguages);
+            $this->model->company()->attach($attributes['companies']);
+
+
 
             DB::connection()->commit();
 
@@ -56,7 +61,9 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface
             DB::connection()->beginTransaction();
 
             $attributes = [
-//                'status' => $data['status']
+//                'status' => $data['status'],
+                'key' => $data['key']
+
             ];
 
             $this->model = parent::update($id, $attributes);
@@ -76,6 +83,11 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface
                     ]);
                 }
             }
+            // Remove all companies
+            $this->model->company()->detach();
+            // Add new companies
+            $this->model->company()->attach($data['companies']);
+
 
             DB::connection()->commit();
 
@@ -83,6 +95,15 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface
         } catch (\PDOException $e) {
             DB::connection()->rollBack();
         }
+    }
+
+//    finding first two records id which can't be deleted
+    public function getFirstTworecordsId()
+    {
+        $data = $this->model->take(2)->select('id')->get();
+
+
+        return $data;
     }
 
 

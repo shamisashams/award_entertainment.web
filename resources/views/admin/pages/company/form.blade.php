@@ -148,6 +148,84 @@
                                     @enderror
                                 </div>
 
+                                <div class="input-field ">
+                                    {!! Form::text('country['.$key.']',$company->language($language->id) !== null ? $company->language($language->id)->country : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('country.*') ? '' : 'valid')]) !!}
+                                    {!! Form::label('country['.$key.']',__('admin.country')) !!}
+
+                                    @error('country.*')
+                                    <small class="errorTxt4">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
+                                </div>
+
+                                <div class="input-field ">
+                                    {!! Form::text('address['.$key.']',$company->language($language->id) !== null ? $company->language($language->id)->address : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('address.*') ? '' : 'valid')]) !!}
+                                    {!! Form::label('address['.$key.']',__('admin.address')) !!}
+
+                                    @error('address.*')
+                                    <small class="errorTxt4">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
+                                </div>
+
+                                <div class="input-field ">
+                                    {!! Form::text('phone['.$key.']',$company->language($language->id) !== null ? $company->language($language->id)->phone : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('phone.*') ? '' : 'valid')]) !!}
+                                    {!! Form::label('phone['.$key.']',__('admin.phone')) !!}
+
+                                    @error('phone.*')
+                                    <small class="errorTxt4">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
+                                </div>
+
+                                <div class="input-field ">
+                                    {!! Form::text('email['.$key.']',$company->language($language->id) !== null ? $company->language($language->id)->email : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('email.*') ? '' : 'valid')]) !!}
+                                    {!! Form::label('email['.$key.']',__('admin.email')) !!}
+
+                                    @error('email.*')
+                                    <small class="errorTxt4">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
+                                </div>
+
+                                <div class="input-field ">
+                                    {!! Form::text('facebook['.$key.']',$company->language($language->id) !== null ? $company->language($language->id)->facebook : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('facebook.*') ? '' : 'valid')]) !!}
+                                    {!! Form::label('facebook['.$key.']',__('admin.facebook')) !!}
+
+                                    @error('facebook.*')
+                                    <small class="errorTxt4">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
+                                </div>
+
+                                <div class="input-field ">
+                                    {!! Form::text('linkedin['.$key.']',$company->language($language->id) !== null ? $company->language($language->id)->linkedin : "",['class' => 'ckeditor validate materialize-textarea '.($errors->has('linkedin.*') ? '' : 'valid')]) !!}
+                                    {!! Form::label('linkedin['.$key.']',__('admin.linkedin')) !!}
+
+                                    @error('linkedin.*')
+                                    <small class="errorTxt4">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
+                                </div>
+
 
 
                             </div>

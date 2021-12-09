@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SliderRequest;
+use App\Models\Company;
 use App\Repositories\SliderRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -63,7 +64,9 @@ class SliderController extends Controller
 
         return view('admin.pages.slider.form', [
             'slider' => $slider,
+            'companies' => Company::where("status", 1)->get(),
             'url' => $url,
+            "selectedCompanies" => [],
             "type" => $type,
             'method' => $method,
             'languages' => $this->activeLanguages(),
@@ -86,7 +89,9 @@ class SliderController extends Controller
             'title' => $request['title'],
             'description' => $request['description'],
             'languages' => $this->activeLanguages(),
+            'companies' => $request['companies']
         ];
+//        dd($request['companies']);
 
         $slider = $this->sliderRepository->create($data);
 
@@ -129,12 +134,16 @@ class SliderController extends Controller
         $slider = $this->sliderRepository->findOrfail($id);
         $type = "homepage";
         $url = locale_route('slider.update', $id, false);
+        $selectedCompanies = $slider->company;
 
         $method = 'PUT';
         return view('admin.pages.slider.form', [
             'slider' => $slider,
             "type" => $type,
             'url' => $url,
+            'companies' => Company::where("status", 1)->get(),
+
+            "selectedCompanies" => array_column($selectedCompanies->toArray(), "id"),
             'method' => $method,
             'languages' => $this->activeLanguages(),
         ]);
@@ -159,6 +168,8 @@ class SliderController extends Controller
             'description' => $request['description'],
             'title' => $request['title'],
             'languages' => $this->activeLanguages(),
+            'companies' => $request['companies']
+
         ];
 
         $slider = $this->sliderRepository->update($id, $data);
