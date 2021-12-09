@@ -124,6 +124,7 @@ img {
 }
 .the_page_title.clicked {
     padding-left: 25px;
+    cursor: pointer;
 }
 .the_page_title.clicked::before {
     opacity: 1;
@@ -1049,7 +1050,12 @@ img {
     margin-top: 0 !important;
     padding-bottom: 0 !important;
 }
-.gallery_page.clicked {
+#blog_page {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: 1s ease;
+}
+#blog_page.clicked {
     transform: scaleY(0);
     opacity: 0;
 }

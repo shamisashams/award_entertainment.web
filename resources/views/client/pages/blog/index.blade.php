@@ -11,48 +11,49 @@
 
 @endsection
 @section('wrapper')
-
-    <section class="gallery_page blogs" id="blog_page">
-    <div class="the_page_title">RAY</div>
-        <div class="blog_page_grid">
-            @foreach($blogs as $blog)
-            <div class="blog_box flex">
-                @if(count($blog->files)>0)
-                    <div class="img">
-                        <img src="{{ asset($blog->files[0]->path."/".$blog->files[0]->title) }}" alt="{{$blog->files[0]->title}}" id="img_{{ $blog->id }}"/>
-                    </div>
-                @endif
-                <div class="context">
-                    <div class="title" id="title_{{ $blog->id }}">
-                        {{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->title : "" }}
-                    </div>
-                    <div class="flex info">
-                        <div class="flex">
-                            <img src="/img/icons/blog/1.png" alt=""/>
-                            <div id="location_{{ $blog->id }}">{{ count($blog->availableLanguage) >0 ? ucfirst($blog->availableLanguage[0]->city) : "" }}, {{ count($blog->availableLanguage) >0 ? ucfirst($blog->availableLanguage[0]->country) : "" }}</div>                        </div>
-                        <div class="flex">
-                            <img src="/img/icons/blog/2.png" alt=""/>
-                            <div id="date_{{ $blog->id }}">{{ $blog->created_at->format('d/m/Y') }}</div>
+    <div class="gallery_page blogs">
+        <div class="the_page_title m5" id="blog_title">@lang("client.our_blogs_go_back")</div>
+        <section  id="blog_page">
+            <div class="blog_page_grid">
+                @foreach($blogs as $blog)
+                <div class="blog_box flex">
+                    @if(count($blog->files)>0)
+                        <div class="img">
+                            <img src="{{ asset($blog->files[0]->path."/".$blog->files[0]->title) }}" alt="{{$blog->files[0]->title}}" id="img_{{ $blog->id }}"/>
                         </div>
-                    </div>
-                    <div class="para" id="description_{{ $blog->id }}">
-                        {{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->short_description : "" }}
-                    </div>
-                    <a href="#">
-                        <div class="flex view_more open_gallery_details" id="{{ $blog->id }}">
-                            <div>@lang("client.view_more_blog")</div>
-                            <img src="/img/icons/blog/3.png" alt=""/>
+                    @endif
+                    <div class="context">
+                        <div class="title" id="title_{{ $blog->id }}">
+                            {{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->title : "" }}
                         </div>
-                    </a>
-                    <div hidden id="content_{{ $blog->id }}">{{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->content : "" }}</div>
+                        <div class="flex info">
+                            <div class="flex">
+                                <img src="/img/icons/blog/1.png" alt=""/>
+                                <div id="location_{{ $blog->id }}">{{ count($blog->availableLanguage) >0 ? ucfirst($blog->availableLanguage[0]->city) : "" }}, {{ count($blog->availableLanguage) >0 ? ucfirst($blog->availableLanguage[0]->country) : "" }}</div>                        </div>
+                            <div class="flex">
+                                <img src="/img/icons/blog/2.png" alt=""/>
+                                <div id="date_{{ $blog->id }}">{{ $blog->created_at->format('d/m/Y') }}</div>
+                            </div>
+                        </div>
+                        <div class="para" id="description_{{ $blog->id }}">
+                            {{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->short_description : "" }}
+                        </div>
+                        <a href="#">
+                            <div class="flex view_more open_gallery_details" id="{{ $blog->id }}">
+                                <div>@lang("client.view_more_blog")</div>
+                                <img src="/img/icons/blog/3.png" alt=""/>
+                            </div>
+                        </a>
+                        <div hidden id="content_{{ $blog->id }}">{{ count($blog->availableLanguage) >0 ? $blog->availableLanguage[0]->content : "" }}</div>
 
+                    </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
-        {{ $blogs->appends(request()->input())->links('client.pagination') }}
+            {{ $blogs->appends(request()->input())->links('client.pagination') }}
 
-    </section>
+        </section>
+    </div>
     <div class="fixed_frame vertical">
         <div class="left_logos flex">
             <a href="#" class="ll"><img src="/img/logo/2.png" alt="" /></a>
