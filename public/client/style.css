@@ -146,8 +146,8 @@ img {
     top: 0;
     z-index: 100;
 }
-.fixed_frame .right_div::after {
-    content: "L I B E R T Y";
+.fixed_frame .right_div .liberty {
+    position: absolute;
     left: 50%;
     top: 50%;
     width: 100vh;
@@ -162,6 +162,8 @@ img {
     align-items: center;
     justify-content: center;
     font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 25px;
 }
 .pagination {
     margin-top: 50px;
@@ -1758,7 +1760,7 @@ img {
         right: 79px;
         top: 82px;
     }
-    .fixed_frame .right_div::after {
+    .fixed_frame .right_div .liberty {
         font-size: 70px;
     }
 }

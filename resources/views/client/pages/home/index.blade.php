@@ -494,7 +494,11 @@
             @endforeach
         </div>
 
-        <div class="right_div"></div>
+        <div class="right_div">
+        <div class="liberty">
+                Liberty
+            </div>
+        </div>
         <button id="footer_btn">
             <span></span>
             <svg

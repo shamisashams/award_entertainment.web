@@ -1,6 +1,10 @@
 @if(! (request()->routeIs("home.index") || request()->routeIs("client.gallery.show") || request()->routeIs("client.company.show")))
     <div class="fixed_frame vertical">
-        <div class="right_div"></div>
+    <div class="right_div">
+            <div class="liberty">
+                Liberty
+            </div>
+        </div>
         <button id="footer_btn">
             <span></span>
             <svg
