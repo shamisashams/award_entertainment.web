@@ -50,6 +50,17 @@
                             </small>
                             @enderror
                         </div>
+                        <div class="input-field col s12">
+                            <textarea name="location_link" class="materialize-textarea validate {{$errors->has(' location_link') ? '' : 'valid'}}">{{$company->location_link}}</textarea>
+                            <label>{{__('admin.location_link')}}</label>
+                            @error('location_link')
+                            <small class="errorTxt4">
+                                <div class="error">
+                                    {{$message}}
+                                </div>
+                            </small>
+                            @enderror
+                        </div>
                         @foreach($languages as $key => $language)
                             <div id="lang-{{$key}}" class="col s12  mt-5">
 

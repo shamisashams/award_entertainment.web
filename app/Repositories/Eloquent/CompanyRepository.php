@@ -30,7 +30,8 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
 
             $data = [
                 'status' => $attributes['status'],
-                'company_link' => $attributes['company_link']
+                'company_link' => $attributes['company_link'],
+                'location_link' => $attributes['location_link']
             ];
             $this->model = parent::create($data);
 
@@ -74,7 +75,9 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
 
             $attributes = [
                 'status' => $data['status'],
-                'company_link' => $data['company_link']
+                'company_link' => $data['company_link'],
+                'location_link' => $data['location_link']
+
 
             ];
 

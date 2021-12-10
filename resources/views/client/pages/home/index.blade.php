@@ -366,7 +366,9 @@
                                                 >@lang("client.email_address")</strong
                                                 >
                                                 @if(count($gemail->availableLanguage) > 0)
-                                                    <div class="para"><a href="mailto:{{ $gemail->availableLanguage[0]->value }}">{{ $gemail->availableLanguage[0]->value }}</a></div>
+                                                    <div class="para"><a
+                                                            href="mailto:{{ $gemail->availableLanguage[0]->value }}">{{ $gemail->availableLanguage[0]->value }}</a>
+                                                    </div>
                                                 @endif
                                             </div>
 
@@ -488,15 +490,16 @@
                         <button class='link'
                                 onclick="window.location.href='{{locale_route('client.company.show', $company->id)}}'"
                             {{--                                href="{{locale_route('client.company.show', $company->id)}}"--}}
-                        >Visit Page</button>
+                        >Visit Page
+                        </button>
                     </div>
                 </a>
             @endforeach
         </div>
 
         <div class="right_div">
-        <div class="liberty">
-                Liberty
+            <div class="liberty">
+                @lang("client.liberty")
             </div>
         </div>
         <button id="footer_btn">

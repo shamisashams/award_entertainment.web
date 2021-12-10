@@ -14,7 +14,8 @@ class Company extends Model
     use HasFactory, ScopeCompanyFilter;
     protected $fillable =[
         "status",
-        "company_link"
+        "company_link",
+        "location_link"
     ];
 
     /**

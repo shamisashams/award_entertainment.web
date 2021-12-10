@@ -1,8 +1,8 @@
 @if(! (request()->routeIs("home.index") || request()->routeIs("client.gallery.show") || request()->routeIs("client.company.show")))
     <div class="fixed_frame vertical">
-    <div class="right_div">
+        <div class="right_div">
             <div class="liberty">
-                Liberty
+                @lang("client.liberty")
             </div>
         </div>
         <button id="footer_btn">
@@ -64,13 +64,14 @@
                     <img src="{{asset($company->mainFile->path.'/'.$company->mainFile->title)}}"
                          alt="{{$company->mainFile->title}}"/>
                 @endif
-                    <div class="description">
-                        {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
-                        <button class='link'
-                                onclick="window.location.href='{{locale_route('client.company.show', $company->id)}}'"
-                            {{--                                href="{{locale_route('client.company.show', $company->id)}}"--}}
-                        >Visit Page</button>
-                    </div>
+                <div class="description">
+                    {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->description : "" !!}
+                    <button class='link'
+                            onclick="window.location.href='{{locale_route('client.company.show', $company->id)}}'"
+                        {{--                                href="{{locale_route('client.company.show', $company->id)}}"--}}
+                    >Visit Page
+                    </button>
+                </div>
             </a>
         @endforeach
 
@@ -194,17 +195,20 @@
                 <div class="main_title"
                      style="color: #ED1C24;">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_title : ""}}</div>
                 <div class="block">
-                    <div class="title">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_1 : ""}}</div>
+                    <div
+                        class="title">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_1 : ""}}</div>
                     <p>
                         {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description : "" !!}
                     </p>
 
-                    <div class="title" style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_2 : ""}}</div>
+                    <div class="title"
+                         style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_2 : ""}}</div>
                     <p>
                         {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_2 : "" !!}
                     </p>
 
-                    <div class="title" style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_3 : ""}}</div>
+                    <div class="title"
+                         style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_3 : ""}}</div>
                     <p>
                         {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_3 : "" !!}
                     </p>
@@ -230,7 +234,8 @@
                             <div class="document">
                                 <img src="/img/icons/other/pdf.png" alt="pdf_icon">
                                 <p>{{ count($document->availableLanguage) >0 ? $document->availableLanguage[0]->title : "" }}</p>
-                                <a href="/{{$document->pdf->path.'/'.$document->pdf->title}}" target="_blank">@lang('client.download_pdf')</a>
+                                <a href="/{{$document->pdf->path.'/'.$document->pdf->title}}"
+                                   target="_blank">@lang('client.download_pdf')</a>
                             </div>
                         @endif
                         {{--                            @if($document->pdf)--}}

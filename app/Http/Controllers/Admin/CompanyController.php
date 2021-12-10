@@ -88,6 +88,7 @@ class CompanyController extends Controller
             'email' => $request['email'],
             'facebook' => $request['facebook'],
             'linkedin' => $request['linkedin'],
+            'location_link' => $request['location_link'],
         ];
         $company = $this->companyRepository->create($data);
 
@@ -118,6 +119,7 @@ class CompanyController extends Controller
             'email' => $request['email'],
             'facebook' => $request['facebook'],
             'linkedin' => $request['linkedin'],
+            'location_link' => $request['location_link'],
             'languages' => $this->activeLanguages(),
         ];
         $company = $this->companyRepository->update($id, $data);
