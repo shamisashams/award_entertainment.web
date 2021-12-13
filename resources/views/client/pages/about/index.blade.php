@@ -38,6 +38,20 @@
                 </div>
             @endif
         </div>
+        <div class="pdf_btns">
+            <a href="#" >
+                <img src="/img/icons/other/pdf.png" alt="">
+                download PDF
+            </a>
+            <a href="#" >
+                <img src="/img/icons/other/pdf.png" alt="">
+                download PDF
+            </a>
+            <a href="#" >
+                <img src="/img/icons/other/pdf.png" alt="">
+                download PDF
+            </a>
+        </div>
     </section>
     <div class="fixed_frame vertical">
         <div class="left_logos flex">

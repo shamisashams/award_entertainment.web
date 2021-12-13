@@ -2740,6 +2740,25 @@ img {
 }
 
 /* about us page */
+.about_us_page .pdf_btns {
+    color: #013448;
+    font-size: 14px;
+    display: block;
+}
+.about_us_page .pdf_btns a {
+    margin-right: 20px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    display: inline-block;
+}
+.about_us_page .pdf_btns a:hover {
+    text-decoration: none;
+}
+.about_us_page .pdf_btns img {
+    vertical-align: middle;
+    width: 18px;
+    margin-right: 6px;
+}
 @media screen and (max-width: 1300px) {
     .gallery_page {
         width: calc(90% - 70px);
