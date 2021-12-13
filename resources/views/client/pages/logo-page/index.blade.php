@@ -451,73 +451,65 @@
             </svg>
         </button>
     </div>
-    @foreach($comp as $company)
+{{--    @foreach($comp as $company)--}}
 
-        <div class="branch_popup">
-            <button class="close_branch_popup"><img src="img/icons/other/close2.png" alt=""></button>
-            <div class="container">
+{{--        <div class="branch_popup">--}}
+{{--            <button class="close_branch_popup"><img src="img/icons/other/close2.png" alt=""></button>--}}
+{{--            <div class="container">--}}
 
-                <div class="bp_left">
-                    <div class="main_title"
-                         style="color: #ED1C24;">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_title : ""}}</div>
-                    <div class="block">
-                        <div
-                            class="title">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_1 : ""}}</div>
-                        <p>
-                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description : "" !!}
-                        </p>
+{{--                <div class="bp_left">--}}
+{{--                    <div class="main_title"--}}
+{{--                         style="color: #ED1C24;">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_title : ""}}</div>--}}
+{{--                    <div class="block">--}}
+{{--                        <div--}}
+{{--                            class="title">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_1 : ""}}</div>--}}
+{{--                        <p>--}}
+{{--                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description : "" !!}--}}
+{{--                        </p>--}}
 
-                        <div class="title"
-                             style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_2 : ""}}</div>
-                        <p>
-                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_2 : "" !!}
-                        </p>
+{{--                        <div class="title"--}}
+{{--                             style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_2 : ""}}</div>--}}
+{{--                        <p>--}}
+{{--                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_2 : "" !!}--}}
+{{--                        </p>--}}
 
-                        <div class="title"
-                             style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_3 : ""}}</div>
-                        <p>
-                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_3 : "" !!}
-                        </p>
-                    </div>
-                </div>
-                <div class="bp_right">
+{{--                        <div class="title"--}}
+{{--                             style="margin-top: 15px">{{count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_sub_title_3 : ""}}</div>--}}
+{{--                        <p>--}}
+{{--                            {!!  count($company->availableLanguage) >0 ? $company->availableLanguage[0]->content_description_3 : "" !!}--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="bp_right">--}}
 
-                    <div class="title">@lang('client.companies_gallery')</div>
-                    <div class="img_row">
-                        @foreach($company->files as $file)
-                            <div class="gallery_box">
-                                <div class="img_overlay">
-                                    <img src="{{ asset($file->path."/".$file->title) }}"
-                                         alt="{{$file->title}}"/></div>
-                                {{--                                <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>--}}
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="title">@lang('client.download_document')</div>
-                    <div class="flex">
-                        @foreach($company->documents as $document)
-                            @if($document->pdf)
-                                <div class="document">
-                                    <img src="/img/icons/other/pdf.png" alt="pdf_icon">
-                                    <p>{{ count($document->availableLanguage) >0 ? $document->availableLanguage[0]->title : "" }}</p>
-                                    <a href="/{{$document->pdf->path.'/'.$document->pdf->title}}"
-                                       target="_blank">@lang('client.download_pdf')</a>
-                                </div>
-                            @endif
-                            {{--                            @if($document->pdf)--}}
-                            {{--                                <a target="_blank" href="/{{$document->pdf->path.'/'.$document->pdf->title}}">--}}
-                            {{--                                    <div class="dl_pdf flex">--}}
-                            {{--                                        <img src="/client/img/icons/other/pdf.png" alt="">--}}
-                            {{--                                        <div>@lang('client.download_pdf')</div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </a>--}}
-                            {{--                            @endif--}}
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
+{{--                    <div class="title">@lang('client.companies_gallery')</div>--}}
+{{--                    <div class="img_row">--}}
+{{--                        @foreach($company->files as $file)--}}
+{{--                            <div class="gallery_box">--}}
+{{--                                <div class="img_overlay">--}}
+{{--                                    <img src="{{ asset($file->path."/".$file->title) }}"--}}
+{{--                                         alt="{{$file->title}}"/></div>--}}
+{{--                                --}}{{--                                <div class="caption">Equipment on the account of "AWARD Transport"<br/><span>Equipment of AWARD Transport</span></div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                    <div class="title">@lang('client.download_document')</div>--}}
+{{--                    <div class="flex">--}}
+{{--                        @foreach($company->documents as $document)--}}
+{{--                            @if($document->pdf)--}}
+{{--                                <div class="document">--}}
+{{--                                    <img src="/img/icons/other/pdf.png" alt="pdf_icon">--}}
+{{--                                    <p>{{ count($document->availableLanguage) >0 ? $document->availableLanguage[0]->title : "" }}</p>--}}
+{{--                                    <a href="/{{$document->pdf->path.'/'.$document->pdf->title}}"--}}
+{{--                                       target="_blank">@lang('client.download_pdf')</a>--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    @endforeach--}}
 
 
 @endsection

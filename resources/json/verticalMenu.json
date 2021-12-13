@@ -55,6 +55,13 @@
             "i18n": "company",
             "icon": "view_module",
             "slug": "company"
+        },
+        {
+            "url": "document.index",
+            "name": "document",
+            "i18n": "document",
+            "icon": "view_module",
+            "slug": "document"
         }
 
 

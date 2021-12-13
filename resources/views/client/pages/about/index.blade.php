@@ -38,19 +38,16 @@
                 </div>
             @endif
         </div>
-        <div class="pdf_btns">
-            <a href="#" >
-                <img src="/img/icons/other/pdf.png" alt="">
-                download PDF
-            </a>
-            <a href="#" >
-                <img src="/img/icons/other/pdf.png" alt="">
-                download PDF
-            </a>
-            <a href="#" >
-                <img src="/img/icons/other/pdf.png" alt="">
-                download PDF
-            </a>
+        <div class="pdf_btns flex">
+            @foreach($page->company[0]->documents as $document)
+                @if($document->pdf)
+                    <a href="/{{$document->pdf->path.'/'.$document->pdf->title}}" target="_blank">
+                        <img src="/img/icons/other/pdf.png" alt="">
+                        <p> {{ count($document->availableLanguage) >0 ? $document->availableLanguage[0]->title : "" }} </p>
+                        @lang('client.download_pdf')
+                    </a>
+                @endif
+            @endforeach
         </div>
     </section>
     <div class="fixed_frame vertical">

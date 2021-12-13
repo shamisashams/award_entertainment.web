@@ -51,7 +51,11 @@ class CompanyController extends Controller
      */
     public function about(string $locale, int $id)
     {
-        $page = Page::with(["files", "availableLanguage", 'company'])
+        $page = Page::with(["files", "availableLanguage", 'company' => function($query) use ($id){
+            $query->with(["documents" => function ($query){
+                $query->with("availableLanguage")->where("status", 1);
+            }])->where('company_id', '=', $id);
+        }])
             ->where("key", "about")
             ->whereHas('company', function ($query) use ($id){
                 $query->where('company_id', '=', $id);
