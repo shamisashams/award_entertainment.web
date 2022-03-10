@@ -237,10 +237,11 @@ img {
 }
 .social_media {
     position: absolute;
-    left: 46px;
+    left: 40px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1000;
+    flex-direction: column;
 }
 .social_media a {
     margin-bottom: 20px;
@@ -1699,7 +1700,7 @@ img {
         width: 65px;
     }
     .social_media {
-        left: 26px;
+        left: 22px;
     }
     .languages {
         right: 20px;
