@@ -168,23 +168,6 @@
     </div>
 </div>
 
-@if(isset($localizations['data']))
-    <div class="languages">
-
-        <div class="current lang">
-            <img src="/img/flags/{{$localizations['current']['locale']}}.png" alt=""/>
-        </div>
-
-        <div class="drop">
-            @foreach($localizations['data'] as $language)
-                <a class="lang" href="{{$language['url']}}">
-                    <img src="/img/flags/{{$language['locale']}}.png" alt=""/>
-                </a>
-            @endforeach
-        </div>
-    </div>
-
-@endif
 @foreach($comp as $company)
 
     <div class="branch_popup">

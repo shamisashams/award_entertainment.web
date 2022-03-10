@@ -3,8 +3,8 @@
 <!-- {{--    <div class="the_page_title" id="gallery_title">Our Galleries</div>--}} -->
 
     {{--    @yield("miniheader")--}}
-    <div class="logo flex ">
-        <img src="/img/logo/1.png" alt="" />    </div>
+    <a href="{{ locale_route("home.index") }}" class="logo flex " id="logo_link">
+        <img src="/img/logo/1.png" alt="" />    </a>
     <div class="navbar">
         <a href="{{ locale_route("home.index") }}" class="nav {{ request()->routeIs("home.index") ? "active" : "" }}">@lang("client.home_navigation")</a>
         <a href="{{ locale_route("client.gallery.index") }}" class="nav {{ request()->routeIs("client.gallery.index") || request()->routeIs('client.gallery.show') ? "active" : "" }}">@lang("client.gallery_navigation")</a>
@@ -57,7 +57,26 @@
 
     </div>
 
+    
+@if(isset($localizations['data']))
+    <div class="languages">
+
+        <div class="current lang">
+            <img src="/img/flags/{{$localizations['current']['locale']}}.png" alt=""/>
+        </div>
+
+        <div class="drop">
+            @foreach($localizations['data'] as $language)
+                <a class="lang" href="{{$language['url']}}">
+                    <img src="/img/flags/{{$language['locale']}}.png" alt=""/>
+                </a>
+            @endforeach
+        </div>
+    </div>
+
+@endif
 </div>
+
 {{--<div class="left_logos flex">--}}
             {{-- <a href="#" class="ll each_left_logo"><img src="/img/logo/2.png" alt=""/>
                 <div class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit aspernatur quod dolores harum! Temporibus distinctio, expedita assumenda quidem eos atque harum obcaecati omnis eaque iste nobis, vero illum dignissimos iusto debitis eum dolores maxime doloremque fugit! Modi, delectus ex. Voluptatem?</div>
