@@ -2,10 +2,7 @@
     File Name: extra-components-i18n.js
     Description: Internationalization
     --------------------------------------------------------------------------------------
-    Item Name: Frest HTML Admin Template
-    Version: 1.0
-    Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
+    .
 ==========================================================================================*/
 
 $(document).ready(function () {
